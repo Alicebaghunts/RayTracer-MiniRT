@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 19:30:19 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/01 17:54:06 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/04 18:10:51 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "object_types.h"
 # include "validation.h"
+#include "vector.h"
 # include <stdlib.h>
 
 // objects

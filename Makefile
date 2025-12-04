@@ -52,6 +52,7 @@ SRCS = \
 	$(RAY_TRACING_DIR)/ambient.c \
 	$(RAY_TRACING_DIR)/shadow.c \
 	$(RAY_TRACING_DIR)/object.c \
+	$(RAY_TRACING_DIR)/bump.c \
 	$(FORMULAS_DIR)/cylinder/cylinder_caps.c \
 	$(FORMULAS_DIR)/cylinder/cylinder_disk.c \
 	$(FORMULAS_DIR)/cylinder/cylinder_shadow.c \

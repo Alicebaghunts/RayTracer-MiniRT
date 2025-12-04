@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:32:12 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/04 14:35:29 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/04 18:44:00 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ t_sphere	*init_sphere(char **line)
 	ft_free_matrix(col);
 	if (line[4] && ft_strlen(line[4]) > 0)
 		sphere->texture = init_texture(line[4]);
+	if (line[5] && ft_strlen(line[5]) > 0)
+		sphere->bump = init_texture(line[5]);
 	return (sphere);
 }

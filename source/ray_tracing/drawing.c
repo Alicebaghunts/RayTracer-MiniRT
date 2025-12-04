@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 16:05:03 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/01 18:29:15 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/04 20:10:09 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,23 @@ static t_object	*find_closest_object(t_scene *scene, t_camera *cam,
 	return (closest);
 }
 
+t_vector	sphere_bitangent(t_vector normal, t_vector tangent)
+{
+	return (vector_normalize(vector_cross(normal, tangent)));
+}
+
 static void	draw_pixel(t_mlx *app, t_camera *cam, int x, int y)
 {
 	t_vector	ray_dir;
 	t_hit		hit;
+	t_sphere	*sp;
+	t_vector	p;
+	float		u;
+	float		v;
+	float		bump;
+	t_vector	tangent;
+	t_vector	bitangent;
+	t_color		shaded;
 	int			rgb;
 
 	ray_dir = compute_ray(cam, x, y);
@@ -83,8 +96,20 @@ static void	draw_pixel(t_mlx *app, t_camera *cam, int x, int y)
 		hit.hit_point = vector_addition(*(cam->position), vector_scale(ray_dir,
 					hit.min_t));
 		hit.normal = get_normal(hit.closest, hit.hit_point);
-		hit.shaded = shade(app->scene, hit.hit_point, hit.normal, hit.closest);
-		rgb = (hit.shaded.red << 16) | (hit.shaded.green << 8) | hit.shaded.blue;
+		if (hit.closest->type == 's' && hit.closest->data->sphere->bump)
+		{
+			sp = hit.closest->data->sphere;
+			p = vector_sub(hit.hit_point, *(sp->position));
+			u = 0.5 + atan2(p.z, p.x) / (2 * M_PI);
+			v = 0.5 - asin(p.y / (sp->diameter / 2)) / M_PI;
+			bump = get_sphere_bump(sp, u, v);
+			tangent = sphere_tangent(hit.normal);
+			bitangent = sphere_bitangent(hit.normal, tangent);
+			hit.normal = apply_sphere_bump(hit.normal, bump, tangent,
+					bitangent);
+		}
+		shaded = shade(app->scene, hit.hit_point, hit.normal, hit.closest);
+		rgb = (shaded.red << 16) | (shaded.green << 8) | shaded.blue;
 		mlx_pixel_put(app->mlx, app->window, x, y, rgb);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:34:48 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/02 17:31:39 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/04 17:54:18 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_plane
 	t_vector		*normal;
 	t_color			*color;
 	t_texture		*texture;
+	t_texture		*bump;
 }					t_plane;
 
 typedef struct s_cylinder
@@ -111,6 +112,7 @@ typedef struct s_cylinder
 	double			diameter;
 	double			height;
 	t_texture		*texture;
+	t_texture		*bump;
 }					t_cylinder;
 
 typedef struct s_scene
@@ -130,6 +132,7 @@ typedef struct s_cone
 	double			height;
 	t_color			*color;
 	t_texture		*texture;
+	t_texture		*bump;
 }					t_cone;
 
 typedef union u_object_data
