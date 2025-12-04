@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:33:32 by alisharu          #+#    #+#             */
-/*   Updated: 2025/11/22 17:39:02 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/01 18:29:15 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 #ifdef __APPLE__
 # define KEY_ESC 53
+# define KEY_SPACE 49
 #else
 # define KEY_ESC 65307
+# define KEY_SPACE 32
 #endif
 
 static void	destroy_app(t_mlx *app)
@@ -38,10 +40,30 @@ static int	close_window(t_mlx *app)
 	return (0);
 }
 
+static void	switch_camera(t_mlx *app)
+{
+	t_list	*cur;
+
+	if (!app || !app->scene || !app->scene->camera)
+		return ;
+	cur = app->scene->active_camera;
+	if (!cur)
+		cur = app->scene->camera;
+	else if (cur->next)
+		cur = cur->next;
+	else
+		cur = app->scene->camera;
+	app->scene->active_camera = cur;
+	mlx_clear_window(app->mlx, app->window);
+	drawing(app);
+}
+
 static int	key_hook(int keycode, t_mlx *app)
 {
 	if (keycode == KEY_ESC)
 		close_window(app);
+	else if (keycode == KEY_SPACE)
+		switch_camera(app);
 	return (0);
 }
 
@@ -102,6 +124,7 @@ int	main(int argc, char **argv)
 	app = mlx_init_scene(scene, MLX_X, MLX_Y, "miniRT");
 	if (!app)
 		return (free_scene(scene), 1);
+	load_scene_textures(scene, app->mlx);
 	drawing(app);
 	mlx_key_hook(app->window, key_hook, app);
 	mlx_hook(app->window, 17, 0, close_window, app);

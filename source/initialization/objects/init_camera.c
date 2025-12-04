@@ -64,6 +64,8 @@ static void	add_camera_to_scene(t_scene *scene, t_camera *camera)
 		error_handling(MALLOC_ERROR);
 	}
 	ft_lstadd_back(&scene->camera, node);
+	if (!scene->active_camera)
+		scene->active_camera = scene->camera;
 }
 
 void	init_camera(t_scene *scene, char **line, char **map)

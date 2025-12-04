@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 16:05:03 by alisharu          #+#    #+#             */
-/*   Updated: 2025/10/08 23:19:28 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/01 18:29:15 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,16 @@ void	drawing(t_mlx *app)
 	int			y;
 	int			x;
 	t_camera	*cam;
+	t_list		*cam_node;
 
-	cam = (t_camera *)app->scene->camera->content;
+	if (!app || !app->scene)
+		return ;
+	cam_node = app->scene->active_camera;
+	if (!cam_node)
+		cam_node = app->scene->camera;
+	if (!cam_node)
+		return ;
+	cam = (t_camera *)cam_node->content;
 	y = 0;
 	while (y < MLX_Y)
 	{

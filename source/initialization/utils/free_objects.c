@@ -26,6 +26,12 @@ void	free_sphere(t_sphere *sphere)
 			free(sphere->texture->path);
 		free(sphere->texture);
 	}
+	if (sphere->bump)
+	{
+		if (sphere->bump->path)
+			free(sphere->bump->path);
+		free(sphere->bump);
+	}
 	free(sphere);
 }
 

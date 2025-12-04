@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:34:48 by alisharu          #+#    #+#             */
-/*   Updated: 2025/11/22 17:21:55 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/02 17:31:39 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ typedef struct s_texture
 	char			*addr;
 	int				width;
 	int				height;
+	int				bpp;
+	int				size_line;
+	int				endian;
 }					t_texture;
 
 typedef struct s_valid_object
@@ -89,6 +92,7 @@ typedef struct s_sphere
 	double			diameter;
 	t_color			*color;
 	t_texture		*texture;
+	t_texture		*bump;
 }					t_sphere;
 
 typedef struct s_plane
@@ -113,6 +117,7 @@ typedef struct s_scene
 {
 	t_ambient		*ambient;
 	t_list			*camera;
+	t_list			*active_camera;
 	t_list			*lights;
 	t_list			*objects;
 }					t_scene;
