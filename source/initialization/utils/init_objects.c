@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/31 22:53:28 by alisharu          #+#    #+#             */
-/*   Updated: 2025/10/08 14:30:44 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:56:54 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	cmp_types_and_init(char **line, t_object *object)
 	if (ft_strncmp(line[0], "sp", 2) == 0)
 	{
 		object->type = 's';
-		object->data->sphere = init_sphere(line);
+  		object->data->sphere = init_sphere(line);
 		if (object->data->sphere == NULL)
 			return (1);
 	}

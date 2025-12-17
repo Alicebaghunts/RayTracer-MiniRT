@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 14:21:37 by alisharu          #+#    #+#             */
-/*   Updated: 2025/11/22 17:59:38 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/16 17:33:20 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,17 @@ t_cone	*init_cone(char **line)
 	ft_free_matrix(pos);
 	ft_free_matrix(axis);
 	ft_free_matrix(col);
-	if (line[6])
+	int line_count = matrix_len(line);
+	if (line_count > 6 && line[6])
 	{
 		cone->texture = init_texture(line[6]);
 		if (!cone->texture)
+			return (free_cone(cone), NULL);
+	}
+	if (line_count > 7 && line[7])
+	{
+		cone->bump = init_texture(line[7]);
+		if (!cone->bump)
 			return (free_cone(cone), NULL);
 	}
 	return (cone);

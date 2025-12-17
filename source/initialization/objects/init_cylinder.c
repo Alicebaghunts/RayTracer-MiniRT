@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:31:59 by alisharu          #+#    #+#             */
-/*   Updated: 2025/11/22 17:57:59 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/16 17:33:36 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,17 @@ t_cylinder	*init_cylinder(char **line)
 	ft_free_matrix(pos);
 	ft_free_matrix(dir);
 	ft_free_matrix(col);
-	if (line[6])
+	int line_count = matrix_len(line);
+	if (line_count > 6 && line[6])
 	{
 		cylinder->texture = init_texture(line[6]);
 		if (!cylinder->texture)
+			return (free_cylinder(cylinder), NULL);
+	}
+	if (line_count > 7 && line[7])
+	{
+		cylinder->bump = init_texture(line[7]);
+		if (!cylinder->bump)
 			return (free_cylinder(cylinder), NULL);
 	}
 	return (cylinder);

@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 14:43:10 by alisharu          #+#    #+#             */
-/*   Updated: 2025/10/08 15:05:50 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:30:26 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ double	check_disk_hit(t_camera *cam, t_vector ray, t_disk disk)
 	return (intersect_disk(cam, ray, disk));
 }
 
-static double	intersect_disk_shadow(t_vector origin, t_vector dir, t_disk disk)
+static double	intersect_disk_shadow(t_vector origin, t_vector dir,
+		t_disk disk)
 {
 	double		denom;
 	double		t;

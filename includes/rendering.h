@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:12:05 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/04 20:12:17 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/16 15:32:07 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define RENDERING_H
 # include "initialization.h"
 # include "intersect.h"
+
+# define RAY_EPS 1e-6
 
 // ray info
 typedef struct s_rayinfo

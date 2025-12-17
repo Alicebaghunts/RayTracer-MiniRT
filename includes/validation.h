@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:34:42 by alisharu          #+#    #+#             */
-/*   Updated: 2025/11/22 19:13:41 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/16 17:11:58 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,6 @@ t_scene		*initialize_scene(char **map);
 void		print_scene(t_scene *scene);
 int			ft_is_valid_xpm_path(char *path);
 int			ft_is_valid_xpm_format(char *path);
+int			matrix_len(char **m);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 18:12:03 by alisharu          #+#    #+#             */
-/*   Updated: 2025/10/08 15:06:05 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:30:50 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static int	cylinder_shadow_valid(t_vector hit, t_cylinder *cy, t_vector axis)
 
 	base_to_hit = vector_sub(hit, *(cy->position));
 	dist = vector_dot(base_to_hit, axis);
-	// position is the center: accept within ±height/2
 	return (fabs(dist) <= cy->height / 2.0);
 }
 
@@ -77,13 +76,12 @@ double	intersect_cylinder_shadow(t_vector origin, t_vector dir, t_cylinder *cy)
 		if (!cylinder_shadow_valid(hit, cy, axis))
 			t = -1.0;
 	}
-	// Also check cap disks
-	top_disk.center = vector_addition(*(cy->position),
-		vector_scale(axis, cy->height / 2.0));
+	top_disk.center = vector_addition(*(cy->position), vector_scale(axis,
+				cy->height / 2.0));
 	top_disk.normal = axis;
 	top_disk.radius = cy->diameter / 2.0;
-	bottom_disk.center = vector_sub(*(cy->position),
-		vector_scale(axis, cy->height / 2.0));
+	bottom_disk.center = vector_sub(*(cy->position), vector_scale(axis,
+				cy->height / 2.0));
 	bottom_disk.normal = vector_scale(axis, -1);
 	bottom_disk.radius = cy->diameter / 2.0;
 	t_top = check_disk_hit_shadow(origin, dir, top_disk);

@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 20:05:05 by alisharu          #+#    #+#             */
-/*   Updated: 2025/08/24 20:05:35 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/16 17:11:41 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,14 @@ void	ft_free_matrix(char **arr)
 	}
 	free(arr);
 	arr = NULL;
+}
+
+int	matrix_len(char **m)
+{
+	int	i;
+
+	i = 0;
+	while (m && m[i])
+		i++;
+	return (i);
 }

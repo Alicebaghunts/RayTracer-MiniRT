@@ -59,10 +59,17 @@ t_plane	*init_plane(char **line)
 	ft_free_matrix(pos);
 	ft_free_matrix(norm);
 	ft_free_matrix(col);
-	if (line[4])
+	int line_count = matrix_len(line);
+	if (line_count > 4 && line[4])
 	{
 		plane->texture = init_texture(line[4]);
 		if (!plane->texture)
+			return (free_plane(plane), NULL);
+	}
+	if (line_count > 5 && line[5])
+	{
+		plane->bump = init_texture(line[5]);
+		if (!plane->bump)
 			return (free_plane(plane), NULL);
 	}
 	return (plane);

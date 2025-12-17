@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 18:55:14 by alisharu          #+#    #+#             */
-/*   Updated: 2025/09/27 19:19:35 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/16 17:40:07 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ static void	add_specular(t_light_info *info)
 	t_vector		light_dir;
 	t_vector		reflect_dir;
 	double			spec;
-	const double	ks = 1.0;
+	const double	ks = 0.6;
 
 	light_dir = normalize(vector_sub(*(info->light->position),
 				info->hit_point));
 	reflect_dir = normalize(vector_sub(vector_scale(info->normal, 2.0
 					* vector_dot(info->normal, light_dir)), light_dir));
-	spec = pow(fmax(0.0, vector_dot(info->view_dir, reflect_dir)), 64);
+	spec = pow(fmax(0.0, vector_dot(info->view_dir, reflect_dir)), 10);
 	if (spec > 0.0)
 	{
 		info->result->red += (int)(info->light->color->red * ks
