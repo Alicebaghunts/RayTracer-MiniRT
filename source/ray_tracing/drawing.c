@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 16:05:03 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/14 21:42:18 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/19 23:03:33 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ static void	draw_pixel(t_mlx *app, t_camera *cam, int x, int y)
 		hit.hit_point = vector_addition(*(cam->position), vector_scale(ray_dir,
 					hit.min_t));
 		hit.normal = get_normal(hit.closest, hit.hit_point);
-		/* normalize and make sure normal faces the incoming ray */
 		hit.normal = normalize(hit.normal);
 		if (vector_dot(ray_dir, hit.normal) > 0.0)
 			hit.normal = vector_scale(hit.normal, -1.0);
