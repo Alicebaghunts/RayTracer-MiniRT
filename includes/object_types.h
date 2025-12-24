@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:34:48 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/04 17:54:18 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/24 15:26:09 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,14 +115,12 @@ typedef struct s_cylinder
 	t_texture		*bump;
 }					t_cylinder;
 
-typedef struct s_scene
+typedef enum e_render_mode
 {
-	t_ambient		*ambient;
-	t_list			*camera;
-	t_list			*active_camera;
-	t_list			*lights;
-	t_list			*objects;
-}					t_scene;
+	MODE_TEXTURE,
+	MODE_BUMP,
+	MODE_CHECKERBOARD
+}					t_render_mode;
 
 typedef struct s_cone
 {
@@ -148,5 +146,16 @@ typedef struct s_object
 	char			type;
 	t_object_data	*data;
 }					t_object;
+
+typedef struct s_scene
+{
+	t_ambient		*ambient;
+	t_list			*camera;
+	t_list			*active_camera;
+	t_list			*lights;
+	t_list			*objects;
+	t_object		*selected_object;
+	t_render_mode	selected_mode;
+}					t_scene;
 
 #endif

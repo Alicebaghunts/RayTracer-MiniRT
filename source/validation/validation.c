@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:33:43 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/02 19:03:08 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/22 21:38:32 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,6 @@ int	ft_is_valid_xpm_path(char *path)
 	if (fd == -1)
 		return (0);
 	close(fd);
-	return (1);
-}
-
-int	ft_is_valid_xpm_format(char *path)
-{
-	int		len;
-
-	if (!path)
-		return (0);
-	len = ft_strlen(path);
-	if (len < 4)
-		return (0);
-	if (ft_strcmp(path + len - 4, ".xpm") != 0)
-		return (0);
 	return (1);
 }
 

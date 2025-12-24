@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 16:05:03 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/19 23:03:33 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/22 23:43:32 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_vector	get_normal(t_object *obj, t_vector hit_point)
 	return ((t_vector){0, 1, 0});
 }
 
-static t_object	*find_closest_object(t_scene *scene, t_camera *cam,
+t_object	*find_closest_object(t_scene *scene, t_camera *cam,
 		t_vector ray_dir, double *min_t)
 {
 	t_list		*node;
@@ -92,18 +92,6 @@ static void	draw_pixel(t_mlx *app, t_camera *cam, int x, int y)
 		hit.normal = normalize(hit.normal);
 		if (vector_dot(ray_dir, hit.normal) > 0.0)
 			hit.normal = vector_scale(hit.normal, -1.0);
-		// if (hit.closest->type == 's' && hit.closest->data->sphere->bump)
-		// {
-		// 	sp = hit.closest->data->sphere;
-		// 	p = vector_sub(hit.hit_point, *(sp->position));
-		// 	u = 0.5 + atan2(p.z, p.x) / (2 * M_PI);
-		// 	v = 0.5 - asin(p.y / (sp->diameter / 2)) / M_PI;
-		// 	bump = get_sphere_bump(sp, u, v);
-		// 	tangent = sphere_tangent(hit.normal);
-		// 	bitangent = sphere_bitangent(hit.normal, tangent);
-		// 	hit.normal = apply_sphere_bump(hit.normal, bump, tangent,
-		// );
-		// }
 		shaded = shade(app->scene, hit.hit_point, hit.normal, hit.closest);
 		rgb = (shaded.red << 16) | (shaded.green << 8) | shaded.blue;
 		mlx_pixel_put(app->mlx, app->window, x, y, rgb);

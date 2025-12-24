@@ -91,6 +91,8 @@ t_vector		vector_sub(t_vector a, t_vector b);
 t_vector		vector_cross(t_vector a, t_vector b);
 t_vector		vector_scale(t_vector v, double s);
 t_vector		vector_addition(t_vector a, t_vector b);
+t_object		*find_closest_object(t_scene *scene, t_camera *cam,
+					t_vector ray_dir, double *min_t);
 double			intersect_sphere(t_camera *camera, t_vector ray_dir,
 					t_sphere *sphere);
 t_vector		compute_ray(t_camera *cam, double u, double v);
@@ -108,11 +110,5 @@ int				in_shadow(t_shadow_info info);
 t_color			get_object_color(t_object *obj);
 t_color			compute_ambient(t_scene *scene, t_color obj_color);
 void			add_light_contribution_struct(t_light_info *info);
-
-//
-float get_sphere_bump(t_sphere *sp, float u, float v);
-t_vector sphere_tangent(t_vector normal);
-t_vector sphere_bitangent(t_vector normal, t_vector tangent);
-t_vector apply_sphere_bump(t_vector normal, float bump_value, t_vector tangent);
 
 #endif

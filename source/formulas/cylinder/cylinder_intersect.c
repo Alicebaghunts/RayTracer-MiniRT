@@ -6,14 +6,13 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:44:24 by alisharu          #+#    #+#             */
-/*   Updated: 2025/10/01 14:58:12 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/24 16:38:47 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "intersect.h"
 
-t_quad	cylinder_coeffs(t_vector dir, t_vector oc, t_vector axis,
-		double radius)
+t_quad	cylinder_coeffs(t_vector dir, t_vector oc, t_vector axis, double radius)
 {
 	t_vector	d_proj;
 	t_vector	oc_proj;

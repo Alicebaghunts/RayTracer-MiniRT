@@ -58,6 +58,62 @@ static void	switch_camera(t_mlx *app)
 	drawing(app);
 }
 
+static t_object	*get_object_at_pixel(t_mlx *app, int x, int y)
+{
+	t_camera	*cam;
+	t_list		*cam_node;
+	t_vector	ray_dir;
+	double		min_t;
+	t_object	*closest;
+
+	if (!app || !app->scene)
+		return (NULL);
+	cam_node = app->scene->active_camera;
+	if (!cam_node)
+		cam_node = app->scene->camera;
+	if (!cam_node)
+		return (NULL);
+	cam = (t_camera *)cam_node->content;
+	ray_dir = compute_ray(cam, x, y);
+	closest = find_closest_object(app->scene, cam, ray_dir, &min_t);
+	return (closest);
+}
+
+static void	cycle_render_mode(t_mlx *app, t_object *obj)
+{
+	if (!app || !app->scene || !obj)
+		return ;
+	if (app->scene->selected_object == obj)
+	{
+		if (app->scene->selected_mode == MODE_TEXTURE)
+			app->scene->selected_mode = MODE_BUMP;
+		else if (app->scene->selected_mode == MODE_BUMP)
+			app->scene->selected_mode = MODE_CHECKERBOARD;
+		else
+			app->scene->selected_mode = MODE_TEXTURE;
+	}
+	else
+	{
+		app->scene->selected_object = obj;
+		app->scene->selected_mode = MODE_TEXTURE;
+	}
+	mlx_clear_window(app->mlx, app->window);
+	drawing(app);
+}
+
+static int	mouse_hook(int button, int x, int y, t_mlx *app)
+{
+	t_object	*clicked_obj;
+
+	if (button == 1)
+	{
+		clicked_obj = get_object_at_pixel(app, x, y);
+		if (clicked_obj)
+			cycle_render_mode(app, clicked_obj);
+	}
+	return (0);
+}
+
 static int	key_hook(int keycode, t_mlx *app)
 {
 	if (keycode == KEY_ESC)
@@ -127,6 +183,7 @@ int	main(int argc, char **argv)
 	load_scene_textures(scene, app->mlx);
 	drawing(app);
 	mlx_key_hook(app->window, key_hook, app);
+	mlx_mouse_hook(app->window, mouse_hook, app);
 	mlx_hook(app->window, 17, 0, close_window, app);
 	mlx_loop(app->mlx);
 	return (0);

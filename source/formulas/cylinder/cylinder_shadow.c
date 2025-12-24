@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 18:12:03 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/16 16:30:50 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/24 16:49:27 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,6 @@ static t_quad	cylinder_shadow_quadratic(t_vector dir, t_vector oc,
 	return (q);
 }
 
-static double	select_cylinder_root(double a, double b, double disc)
-{
-	double	t1;
-	double	t2;
-
-	if (disc < 0)
-		return (-1.0);
-	t1 = (-b - sqrt(disc)) / (2.0 * a);
-	t2 = (-b + sqrt(disc)) / (2.0 * a);
-	if (t1 > 1e-6)
-		return (t1);
-	if (t2 > 1e-6)
-		return (t2);
-	return (-1.0);
-}
-
 static int	cylinder_shadow_valid(t_vector hit, t_cylinder *cy, t_vector axis)
 {
 	t_vector	base_to_hit;
@@ -54,28 +38,16 @@ static int	cylinder_shadow_valid(t_vector hit, t_cylinder *cy, t_vector axis)
 	return (fabs(dist) <= cy->height / 2.0);
 }
 
-double	intersect_cylinder_shadow(t_vector origin, t_vector dir, t_cylinder *cy)
+static double	check_cylinder_caps_shadow(t_vector origin, t_vector dir,
+		t_cylinder *cy, double t)
 {
-	t_vector	oc;
-	t_vector	axis;
-	t_quad		q;
-	double		t;
-	t_vector	hit;
 	double		t_top;
 	double		t_bottom;
 	t_disk		top_disk;
 	t_disk		bottom_disk;
+	t_vector	axis;
 
-	oc = vector_sub(origin, *(cy->position));
 	axis = normalize(*(cy->direction));
-	q = cylinder_shadow_quadratic(dir, oc, axis, cy->diameter / 2.0);
-	t = select_cylinder_root(q.a, q.b, q.discriminant);
-	if (t > 1e-6)
-	{
-		hit = vector_addition(origin, vector_scale(dir, t));
-		if (!cylinder_shadow_valid(hit, cy, axis))
-			t = -1.0;
-	}
 	top_disk.center = vector_addition(*(cy->position), vector_scale(axis,
 				cy->height / 2.0));
 	top_disk.normal = axis;
@@ -90,5 +62,46 @@ double	intersect_cylinder_shadow(t_vector origin, t_vector dir, t_cylinder *cy)
 		t = t_top;
 	if (t < 0.0 || (t_bottom >= 0.0 && (t < 0.0 || t_bottom < t)))
 		t = t_bottom;
+	return (t);
+}
+
+static double	check_cylinder_side_shadow(t_vector origin, t_vector dir,
+		t_cylinder *cy, t_quad q)
+{
+	double		t;
+	double		t1;
+	double		t2;
+	t_vector	hit;
+	t_vector	axis;
+
+	axis = normalize(*(cy->direction));
+	if (q.discriminant < 0)
+		return (-1.0);
+	t1 = (-q.b - sqrt(q.discriminant)) / (2.0 * q.a);
+	t2 = (-q.b + sqrt(q.discriminant)) / (2.0 * q.a);
+	if (t1 > 1e-6)
+		t = t1;
+	else if (t2 > 1e-6)
+		t = t2;
+	else
+		return (-1.0);
+	hit = vector_addition(origin, vector_scale(dir, t));
+	if (!cylinder_shadow_valid(hit, cy, axis))
+		return (-1.0);
+	return (t);
+}
+
+double	intersect_cylinder_shadow(t_vector origin, t_vector dir, t_cylinder *cy)
+{
+	t_vector	oc;
+	t_vector	axis;
+	t_quad		q;
+	double		t;
+
+	oc = vector_sub(origin, *(cy->position));
+	axis = normalize(*(cy->direction));
+	q = cylinder_shadow_quadratic(dir, oc, axis, cy->diameter / 2.0);
+	t = check_cylinder_side_shadow(origin, dir, cy, q);
+	t = check_cylinder_caps_shadow(origin, dir, cy, t);
 	return (t);
 }

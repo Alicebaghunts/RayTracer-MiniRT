@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:31:59 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/16 17:33:36 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/24 16:34:54 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,39 @@ static int	fill_cylinder_vectors(t_cylinder *cylinder, char **pos, char **dir,
 	return (1);
 }
 
+static int	load_cylinder_textures(t_cylinder *cylinder, char **line,
+		int line_count)
+{
+	if (line_count > 6 && line[6])
+	{
+		cylinder->texture = init_texture(line[6]);
+		if (!cylinder->texture)
+			return (0);
+	}
+	if (line_count > 7 && line[7])
+	{
+		cylinder->bump = init_texture(line[7]);
+		if (!cylinder->bump)
+			return (0);
+	}
+	return (1);
+}
+
+static t_cylinder	*finalize_cylinder(t_cylinder *cylinder, char **line,
+		int line_count)
+{
+	if (!load_cylinder_textures(cylinder, line, line_count))
+		return (free_cylinder(cylinder), NULL);
+	return (cylinder);
+}
+
 t_cylinder	*init_cylinder(char **line)
 {
 	t_cylinder	*cylinder;
 	char		**pos;
 	char		**dir;
 	char		**col;
+	int			line_count;
 
 	if (!line || !line[1] || !line[2] || !line[3] || !line[4] || !line[5])
 		return (NULL);
@@ -54,25 +81,13 @@ t_cylinder	*init_cylinder(char **line)
 	dir = ft_split(line[2], ',');
 	col = ft_split(line[5], ',');
 	if (!fill_cylinder_vectors(cylinder, pos, dir, col))
-		return (ft_free_matrix(pos), ft_free_matrix(dir), ft_free_matrix(col),
-			free(cylinder), NULL);
+		return (ft_free_matrix(pos), ft_free_matrix(dir),
+			ft_free_matrix(col), free(cylinder), NULL);
 	cylinder->diameter = ft_atof(line[3]);
 	cylinder->height = ft_atof(line[4]);
 	ft_free_matrix(pos);
 	ft_free_matrix(dir);
 	ft_free_matrix(col);
-	int line_count = matrix_len(line);
-	if (line_count > 6 && line[6])
-	{
-		cylinder->texture = init_texture(line[6]);
-		if (!cylinder->texture)
-			return (free_cylinder(cylinder), NULL);
-	}
-	if (line_count > 7 && line[7])
-	{
-		cylinder->bump = init_texture(line[7]);
-		if (!cylinder->bump)
-			return (free_cylinder(cylinder), NULL);
-	}
-	return (cylinder);
+	line_count = matrix_len(line);
+	return (finalize_cylinder(cylinder, line, line_count));
 }

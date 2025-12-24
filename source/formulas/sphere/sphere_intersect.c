@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 18:32:49 by alisharu          #+#    #+#             */
-/*   Updated: 2025/11/22 19:40:34 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/24 16:49:34 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static t_roots	sphere_roots(t_vector oc, t_vector dir, double radius)
 	r.t2 = (-b + sqrt(disc)) / (2.0 * a);
 	return (r);
 }
+
 double	intersect_sphere(t_camera *cam, t_vector dir, t_sphere *sp)
 {
 	t_vector	oc;

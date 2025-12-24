@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 00:34:49 by alisharu          #+#    #+#             */
-/*   Updated: 2025/11/22 17:56:31 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/24 16:29:51 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,37 @@ static int	fill_plane_vectors(t_plane *plane, char **pos, char **norm,
 	return (1);
 }
 
+static void	ft_free_all_matrices(char **m1, char **m2, char **m3)
+{
+	ft_free_matrix(m1);
+	ft_free_matrix(m2);
+	ft_free_matrix(m3);
+}
+
+static int	load_plane_textures(t_plane *plane, char **line, int line_count)
+{
+	if (line_count > 4 && line[4])
+	{
+		plane->texture = init_texture(line[4]);
+		if (!plane->texture)
+			return (0);
+	}
+	if (line_count > 5 && line[5])
+	{
+		plane->bump = init_texture(line[5]);
+		if (!plane->bump)
+			return (0);
+	}
+	return (1);
+}
+
 t_plane	*init_plane(char **line)
 {
 	t_plane	*plane;
 	char	**pos;
 	char	**norm;
 	char	**col;
+	int		line_count;
 
 	if (!line || !line[1] || !line[2] || !line[3])
 		return (NULL);
@@ -56,21 +81,9 @@ t_plane	*init_plane(char **line)
 	if (!fill_plane_vectors(plane, pos, norm, col))
 		return (ft_free_matrix(pos), ft_free_matrix(norm), ft_free_matrix(col),
 			free(plane), NULL);
-	ft_free_matrix(pos);
-	ft_free_matrix(norm);
-	ft_free_matrix(col);
-	int line_count = matrix_len(line);
-	if (line_count > 4 && line[4])
-	{
-		plane->texture = init_texture(line[4]);
-		if (!plane->texture)
-			return (free_plane(plane), NULL);
-	}
-	if (line_count > 5 && line[5])
-	{
-		plane->bump = init_texture(line[5]);
-		if (!plane->bump)
-			return (free_plane(plane), NULL);
-	}
+	ft_free_all_matrices(pos, norm, col);
+	line_count = matrix_len(line);
+	if (!load_plane_textures(plane, line, line_count))
+		return (free_plane(plane), NULL);
 	return (plane);
 }

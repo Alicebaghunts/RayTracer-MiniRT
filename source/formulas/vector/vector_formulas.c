@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:31:04 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/04 18:08:54 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/24 16:49:34 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,4 @@ t_vector	vector_scale(t_vector v, double s)
 	res.y = v.y * s;
 	res.z = v.z * s;
 	return (res);
-}
-
-t_vector vector_normalize(t_vector v)
-{
-    double len = sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
-    t_vector res = {v.x / len, v.y / len, v.z / len};
-    return res;
 }

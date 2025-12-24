@@ -36,6 +36,8 @@ t_scene	*initialize_scene(char **map)
 	scene = ft_calloc(1, sizeof(t_scene));
 	if (!scene)
 		error_handling(MALLOC_ERROR);
+	scene->selected_object = NULL;
+	scene->selected_mode = MODE_TEXTURE;
 	i = -1;
 	while (map[++i])
 	{

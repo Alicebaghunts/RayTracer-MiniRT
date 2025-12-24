@@ -6,12 +6,13 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 17:05:15 by alisharu          #+#    #+#             */
-/*   Updated: 2025/10/08 15:29:09 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/24 16:38:43 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "intersect.h"
 #define EPSILON 1e-6
+
 t_vector	get_cylinder_normal(t_cylinder *cy, t_vector hit)
 {
 	t_vector	axis;
@@ -25,12 +26,12 @@ t_vector	get_cylinder_normal(t_cylinder *cy, t_vector hit)
 		return (axis);
 	if (fabs(proj + (cy->height / 2.0)) <= 1e-4)
 		return (vector_scale(axis, -1));
-	return (normalize(vector_sub(rel, vector_scale(axis, vector_dot(rel, axis)))));
+	return (normalize(vector_sub(rel, vector_scale(axis, vector_dot(rel,
+						axis)))));
 }
 
 int	check_cylinder_height(t_vector hit, t_cylinder *cy, t_vector axis)
 {
-																								
 	t_vector	center_to_hit;
 	double		dist_along_axis;
 
