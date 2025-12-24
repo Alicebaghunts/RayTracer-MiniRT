@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:12:05 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/24 18:00:49 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/24 18:13:27 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 # include "intersect.h"
 
 # define RAY_EPS 1e-6
+#ifdef __APPLE__
+# define KEY_ESC 53
+# define KEY_SPACE 49
+#else
+# define KEY_ESC 65307
+# define KEY_SPACE 32
+#endif
 
 // ray info
 typedef struct s_rayinfo

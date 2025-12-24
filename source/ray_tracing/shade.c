@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 19:50:25 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/24 16:25:55 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/24 18:21:17 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static t_color	get_sphere_texture_color(t_sphere *sphere, t_texture *tex,
 	return (color);
 }
 
-// checkerboard pattern for spheres
 static t_color	get_sphere_checkerboard(t_sphere *sphere, t_vector hit_point)
 {
 	t_vector	rel;
@@ -67,17 +66,17 @@ static t_color	get_sphere_checkerboard(t_sphere *sphere, t_vector hit_point)
 	n = normalize(rel);
 	u = 0.5 + atan2(n.z, n.x) / (2.0 * M_PI);
 	v = 0.5 - asin(n.y) / M_PI;
-	check_size = 10.0; /* number of checker squares */
+	check_size = 10.0; 
 	check_u = (int)(u * check_size);
 	check_v = (int)(v * check_size);
 	if ((check_u + check_v) % 2 == 0)
 	{
-		color1 = (t_color){255, 255, 255}; /* white */
+		color1 = (t_color){255, 255, 255};
 		return (color1);
 	}
 	else
 	{
-		color2 = (t_color){0, 0, 0}; /* black */
+		color2 = (t_color){0, 0, 0};
 		return (color2);
 	}
 }
@@ -208,7 +207,6 @@ t_color	shade(t_scene *scene, t_vector hit_point, t_vector normal,
 	else if (mode == MODE_BUMP)
 		obj_color = get_object_color(obj);
 	else
-		/* default: texture if available, otherwise base color */
 		if (obj && obj->type == 's' && obj->data && obj->data->sphere
 			&& obj->data->sphere->texture)
 			obj_color = get_sphere_texture_color(obj->data->sphere,

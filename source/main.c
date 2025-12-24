@@ -6,19 +6,11 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:33:32 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/24 17:57:38 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/24 18:13:22 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rendering.h"
-
-#ifdef __APPLE__
-# define KEY_ESC 53
-# define KEY_SPACE 49
-#else
-# define KEY_ESC 65307
-# define KEY_SPACE 32
-#endif
 
 static int	mouse_hook(int button, int x, int y, t_mlx *app)
 {
