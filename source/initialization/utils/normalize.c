@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:23:03 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/24 16:49:27 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/24 16:54:17 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,4 @@ t_vector	vector_normalize(t_vector v)
 	res.y = v.y / len;
 	res.z = v.z / len;
 	return (res);
-}
-
-t_vector	sphere_normal(t_sphere *sphere, t_vector hit_point)
-{
-	t_vector	normal;
-
-	normal.x = hit_point.x - sphere->position->x;
-	normal.y = hit_point.y - sphere->position->y;
-	normal.z = hit_point.z - sphere->position->z;
-	return (normalize(normal));
 }

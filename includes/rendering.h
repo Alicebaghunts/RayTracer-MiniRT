@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:12:05 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/16 15:32:07 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/24 18:00:49 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,17 @@ int				in_shadow(t_shadow_info info);
 t_color			get_object_color(t_object *obj);
 t_color			compute_ambient(t_scene *scene, t_color obj_color);
 void			add_light_contribution_struct(t_light_info *info);
+
+//
+float get_sphere_bump(t_sphere *sp, float u, float v);
+t_vector sphere_tangent(t_vector normal);
+t_vector sphere_bitangent(t_vector normal, t_vector tangent);
+t_vector apply_sphere_bump(t_vector normal, float bump_value, t_vector tangent);
+
+void	destroy_app(t_mlx *app);
+int	close_window(t_mlx *app);
+void	switch_camera(t_mlx *app);
+t_object	*get_object_at_pixel(t_mlx *app, int x, int y);
+void	cycle_render_mode(t_mlx *app, t_object *obj);
 
 #endif
