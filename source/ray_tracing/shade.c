@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 19:50:25 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/24 18:21:17 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/25 20:40:54 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ static t_color	get_texture_color_uv(t_texture *tex, double u, double v)
 	color.blue = pixel & 0xFF;
 	return (color);
 }
+
 t_vector	get_sphere_bump_normal(t_sphere *sphere, t_texture *bump,
 		t_vector hit_point, t_vector normal)
 {
@@ -151,6 +152,163 @@ static void	init_light_info_base(t_light_info *li, t_shade_info *si,
 	li->obj_color = si->obj_color;
 	li->light = light;
 	li->normal = si->normal;
+}
+
+// static void	compute_lights(t_shade_info info)
+// {
+// 	t_list			*l_node;
+// 	t_light			*light;
+// 	t_shadow_info	shadow;
+// 	t_light_info	light_info;
+
+// 	l_node = info.scene->lights;
+// 	while (l_node)
+// 	{
+// 		light = (t_light *)l_node->content;
+// 		shadow.scene = info.scene;
+// 		shadow.hit_point = info.hit_point;
+// 		shadow.normal = info.normal;
+// 		shadow.light_dir = vector_sub(*(light->position), info.hit_point);
+// 		shadow.light_dist = vector_length(shadow.light_dir);
+// 		shadow.ignore = info.obj;
+// 		if (!in_shadow(shadow))
+// 		{
+// 			init_light_info_base(&light_info, &info, light);
+// 			light_info.view_dir = info.view_dir;
+// 			light_info.hit_point = info.hit_point;
+// 			add_light_contribution_struct(&light_info);
+// 		}
+// 		l_node = l_node->next;
+// 	}
+// }
+
+static t_color	get_plane_checkerboard(t_plane *pl, t_vector hit_point)
+{
+	t_vector	rel;
+	t_vector	up;
+	t_vector	tangent;
+	t_vector	bitangent;
+	double		ux;
+	double		vy;
+	double		check_size;
+	int		check_u;
+	int		check_v;
+	t_color		c1;
+	t_color		c2;
+
+	rel = vector_sub(hit_point, *(pl->position));
+	up = (fabs(pl->normal->y) > 0.999) ? (t_vector){1.0, 0.0, 0.0} : (t_vector){0.0, 1.0, 0.0};
+	tangent = normalize(vector_cross(*pl->normal, up));
+	bitangent = normalize(vector_cross(*pl->normal, tangent));
+	ux = vector_dot(rel, tangent);
+	vy = vector_dot(rel, bitangent);
+	check_size = 1.0; /* world units */
+	check_u = (int)floor(ux * check_size);
+	check_v = (int)floor(vy * check_size);
+	if ((check_u + check_v) % 2 == 0)
+	{
+		c1 = (t_color){255, 255, 255};
+		return (c1);
+	}
+	c2 = (t_color){0, 0, 0};
+	return (c2);
+}
+
+static t_color	get_cylinder_checkerboard(t_cylinder *cy, t_vector hit_point)
+{
+	t_vector	rel;
+	t_vector	axis;
+	t_vector	up;
+	t_vector	tangent;
+	t_vector	bitangent;
+	double		ang;
+	double		v;
+	double		check_size;
+	int		check_u;
+	int		check_v;
+	t_color		c1;
+	t_color		c2;
+
+	axis = normalize(*(cy->direction));
+	rel = vector_sub(hit_point, *(cy->position));
+	up = (fabs(axis.y) > 0.999) ? (t_vector){1.0, 0.0, 0.0} : (t_vector){0.0, 1.0, 0.0};
+	tangent = normalize(vector_cross(up, axis));
+	bitangent = normalize(vector_cross(axis, tangent));
+	double x = vector_dot(rel, tangent);
+	double z = vector_dot(rel, bitangent);
+	ang = atan2(z, x); 
+	ang = (ang < 0.0) ? ang + 2.0 * M_PI : ang;
+	v = vector_dot(rel, axis);
+	check_size = 10.0;
+	check_u = (int)floor((ang / (2.0 * M_PI)) * check_size);
+	check_v = (int)floor(v * (check_size / (cy->height > 0 ? cy->height : 1.0)));
+	if ((check_u + check_v) % 2 == 0)
+	{
+		c1 = (t_color){255, 255, 255};
+		return (c1);
+	}
+	c2 = (t_color){0, 0, 0};
+	return (c2);
+}
+
+static t_color	get_cone_checkerboard(t_cone *cone, t_vector hit_point)
+{
+	t_vector	rel;
+	t_vector	axis;
+	t_vector	up;
+	t_vector	tangent;
+	t_vector	bitangent;
+	double		ang;
+	double		v;
+	double		check_size;
+	int		check_u;
+	int		check_v;
+	t_color		c1;
+	t_color		c2;
+
+	axis = normalize(*(cone->axis));
+	rel = vector_sub(hit_point, *(cone->apex));
+	up = (fabs(axis.y) > 0.999) ? (t_vector){1.0, 0.0, 0.0} : (t_vector){0.0, 1.0, 0.0};
+	tangent = normalize(vector_cross(up, axis));
+	bitangent = normalize(vector_cross(axis, tangent));
+	double x = vector_dot(rel, tangent);
+	double z = vector_dot(rel, bitangent);
+	ang = atan2(z, x);
+	ang = (ang < 0.0) ? ang + 2.0 * M_PI : ang;
+	v = vector_dot(rel, axis); /* distance from apex along axis */
+	check_size = 10.0;
+	check_u = (int)floor((ang / (2.0 * M_PI)) * check_size);
+	check_v = (int)floor(v * (check_size / (cone->height > 0 ? cone->height : 1.0)));
+	if ((check_u + check_v) % 2 == 0)
+	{
+		c1 = (t_color){255, 255, 255};
+		return (c1);
+	}
+	c2 = (t_color){0, 0, 0};
+	return (c2);
+}
+
+static t_color	get_object_checkerboard(t_object *obj, t_vector hit_point)
+{
+	if (!obj)
+		return (get_object_color(obj));
+	if (obj->type == 's' && obj->data && obj->data->sphere)
+		return (get_sphere_checkerboard(obj->data->sphere, hit_point));
+	if (obj->type == 'p' && obj->data && obj->data->plane)
+		return (get_plane_checkerboard(obj->data->plane, hit_point));
+	if (obj->type == 'c' && obj->data && obj->data->cylinder)
+		return (get_cylinder_checkerboard(obj->data->cylinder, hit_point));
+	if (obj->type == 'o' && obj->data && obj->data->cone)
+		return (get_cone_checkerboard(obj->data->cone, hit_point));
+	return (get_object_color(obj));
+}
+
+t_vector	get_object_bump_normal(t_object *obj, t_texture *bump,
+		t_vector hit_point, t_vector normal)
+{
+	if (obj->type == 's' && obj->data && obj->data->sphere)
+		return (get_sphere_bump_normal(obj->data->sphere, bump, hit_point, normal));
+	return (normal);
 }
 
 static void	compute_lights(t_shade_info info)
@@ -197,9 +355,8 @@ t_color	shade(t_scene *scene, t_vector hit_point, t_vector normal,
 		mode = scene->selected_mode;
 	else
 		mode = MODE_TEXTURE;
-	if (mode == MODE_CHECKERBOARD && obj && obj->type == 's' && obj->data
-		&& obj->data->sphere)
-		obj_color = get_sphere_checkerboard(obj->data->sphere, hit_point);
+	if (mode == MODE_CHECKERBOARD)
+		obj_color = get_object_checkerboard(obj, hit_point);
 	else if (mode == MODE_TEXTURE && obj && obj->type == 's' && obj->data
 		&& obj->data->sphere && obj->data->sphere->texture)
 		obj_color = get_sphere_texture_color(obj->data->sphere,
@@ -226,6 +383,12 @@ t_color	shade(t_scene *scene, t_vector hit_point, t_vector normal,
 	{
 		final_normal = get_sphere_bump_normal(obj->data->sphere,
 				obj->data->sphere->bump, hit_point, normal);
+	}
+	else if (obj && obj->type != 's' && obj->data && obj->data->sphere
+		&& obj->data->sphere->bump)
+	{
+		final_normal = get_object_bump_normal(obj, obj->data->sphere->bump,
+				hit_point, normal);
 	}
 
 	if (vector_dot(view_dir, final_normal) < 0.0)

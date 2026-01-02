@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:33:32 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/24 18:13:22 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/25 21:08:41 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	main(int argc, char **argv)
 	drawing(app);
 	mlx_key_hook(app->window, key_hook, app);
 	mlx_mouse_hook(app->window, mouse_hook, app);
+	//mlx_hook(app->window, 17, 0, switch_texture, app);
 	mlx_hook(app->window, 17, 0, close_window, app);
 	mlx_loop(app->mlx);
 	return (0);

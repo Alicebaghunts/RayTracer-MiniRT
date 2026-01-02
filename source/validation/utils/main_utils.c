@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 17:56:26 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/24 17:58:48 by alisharu         ###   ########.fr       */
+/*   Updated: 2025/12/25 21:08:55 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,21 @@ void	destroy_app(t_mlx *app)
 	free(app);
 }
 
+// int switch_texture(t_mlx *app)
+// {
+//     t_object * object;
+
+//     if (!app || !app->scene || !app->window)
+//         return ;
+// }
+
 int	close_window(t_mlx *app)
 {
 	destroy_app(app);
 	exit(0);
 	return (0);
 }
+
 
 void	switch_camera(t_mlx *app)
 {
@@ -78,9 +87,9 @@ void	cycle_render_mode(t_mlx *app, t_object *obj)
 	if (app->scene->selected_object == obj)
 	{
 		if (app->scene->selected_mode == MODE_TEXTURE)
-			app->scene->selected_mode = MODE_BUMP;
-		else if (app->scene->selected_mode == MODE_BUMP)
 			app->scene->selected_mode = MODE_CHECKERBOARD;
+		else if (app->scene->selected_mode == MODE_CHECKERBOARD)
+			app->scene->selected_mode = MODE_BUMP;
 		else
 			app->scene->selected_mode = MODE_TEXTURE;
 	}
