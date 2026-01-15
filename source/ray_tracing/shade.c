@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 19:50:25 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/25 20:40:54 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:09:56 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,33 +154,6 @@ static void	init_light_info_base(t_light_info *li, t_shade_info *si,
 	li->normal = si->normal;
 }
 
-// static void	compute_lights(t_shade_info info)
-// {
-// 	t_list			*l_node;
-// 	t_light			*light;
-// 	t_shadow_info	shadow;
-// 	t_light_info	light_info;
-
-// 	l_node = info.scene->lights;
-// 	while (l_node)
-// 	{
-// 		light = (t_light *)l_node->content;
-// 		shadow.scene = info.scene;
-// 		shadow.hit_point = info.hit_point;
-// 		shadow.normal = info.normal;
-// 		shadow.light_dir = vector_sub(*(light->position), info.hit_point);
-// 		shadow.light_dist = vector_length(shadow.light_dir);
-// 		shadow.ignore = info.obj;
-// 		if (!in_shadow(shadow))
-// 		{
-// 			init_light_info_base(&light_info, &info, light);
-// 			light_info.view_dir = info.view_dir;
-// 			light_info.hit_point = info.hit_point;
-// 			add_light_contribution_struct(&light_info);
-// 		}
-// 		l_node = l_node->next;
-// 	}
-// }
 
 static t_color	get_plane_checkerboard(t_plane *pl, t_vector hit_point)
 {

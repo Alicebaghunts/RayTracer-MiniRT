@@ -6,11 +6,17 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 16:05:03 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/15 17:13:17 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:17:46 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rendering.h"
+#include <pthread.h>
+#include <stdlib.h>
+
+#ifndef THREADS
+# define THREADS 8
+#endif
 
 static double	get_intersection(t_object *obj, t_camera *cam, t_vector ray_dir)
 {
@@ -33,7 +39,7 @@ static double	get_intersection(t_object *obj, t_camera *cam, t_vector ray_dir)
 	return (INFINITY);
 }
 
-static t_vector	get_normal(t_object *obj, t_vector hit_point)
+t_vector	get_normal(t_object *obj, t_vector hit_point)
 {
 	if (obj->type == 's')
 		return (sphere_normal(obj->data->sphere, hit_point));
@@ -42,11 +48,13 @@ static t_vector	get_normal(t_object *obj, t_vector hit_point)
 	else if (obj->type == 'o')
 		return (cone_normal(obj->data->cone, hit_point));
 	return (cylinder_normal(obj->data->cylinder, hit_point));
-	return ((t_vector){0, 1, 0});
 }
 
+/* prototype implemented in thread_utils.c */
+int	start_render_threads(t_mlx *app);
+
 t_object	*find_closest_object(t_scene *scene, t_camera *cam,
-		t_vector ray_dir, double *min_t)
+						 t_vector ray_dir, double *min_t)
 {
 	t_list		*node;
 	t_object	*obj;
@@ -75,56 +83,10 @@ t_vector	sphere_bitangent(t_vector normal, t_vector tangent)
 	return (vector_normalize(vector_cross(normal, tangent)));
 }
 
-static void	draw_pixel(t_mlx *app, t_camera *cam, int x, int y)
-{
-	t_vector	ray_dir;
-	t_hit		hit;
-	t_color		shaded;
-	int			rgb;
-
-	ray_dir = compute_ray(cam, x, y);
-	hit.closest = find_closest_object(app->scene, cam, ray_dir, &hit.min_t);
-	if (hit.closest)
-	{
-		hit.hit_point = vector_addition(*(cam->position), vector_scale(ray_dir,
-					hit.min_t));
-		hit.normal = get_normal(hit.closest, hit.hit_point);
-		hit.normal = normalize(hit.normal);
-		if (vector_dot(ray_dir, hit.normal) > 0.0)
-			hit.normal = vector_scale(hit.normal, -1.0);
-		shaded = shade(app->scene, hit.hit_point, hit.normal, hit.closest);
-		rgb = (shaded.red << 16) | (shaded.green << 8) | shaded.blue;
-		my_mlx_pixel_put(app, x, y, rgb);
-	}
-	else
-		my_mlx_pixel_put(app, x, y, 0x000000);
-}
-
 void	drawing(t_mlx *app)
 {
-	int			y;
-	int			x;
-	t_camera	*cam;
-	t_list		*cam_node;
-
-	if (!app || !app->scene)
-		return ;
-	cam_node = app->scene->active_camera;
-	if (!cam_node)
-		cam_node = app->scene->camera;
-	if (!cam_node)
-		return ;
-	cam = (t_camera *)cam_node->content;
-	y = 0;
-	while (y < MLX_Y)
-	{
-		x = 0;
-		while (x < MLX_X)
-		{
-			draw_pixel(app, cam, x, y);
-			x++;
-		}
-		y++;
-	}
-	mlx_put_image_to_window(app->mlx, app->window, app->img, 0, 0);
+    if (!app || !app->scene)
+        return ;
+    /* start_render_threads handles thread creation, joining and presentation */
+    start_render_threads(app);
 }
