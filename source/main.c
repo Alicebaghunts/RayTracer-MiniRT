@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:33:32 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/25 21:08:41 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/15 17:13:09 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,21 @@ t_mlx	*mlx_init_scene(t_scene *scene, int width, int height, char *title)
 		free(mlx_struct);
 		return (NULL);
 	}
+	mlx_struct->img = mlx_new_image(mlx_struct->mlx, width, height);
+	if (!mlx_struct->img)
+	{
+		free(mlx_struct->mlx);
+		free(mlx_struct);
+		return (NULL);
+	}
+	mlx_struct->img_addr = mlx_get_data_addr(mlx_struct->img, &mlx_struct->img_bpp,
+		&mlx_struct->img_size_line, &mlx_struct->img_endian);
+	if (!mlx_struct->img_addr)
+	{
+		free(mlx_struct->mlx);
+		free(mlx_struct);
+		return (NULL);
+	}
 	mlx_struct->scene = scene;
 	return (mlx_struct);
 }
@@ -95,7 +110,6 @@ int	main(int argc, char **argv)
 	drawing(app);
 	mlx_key_hook(app->window, key_hook, app);
 	mlx_mouse_hook(app->window, mouse_hook, app);
-	//mlx_hook(app->window, 17, 0, switch_texture, app);
 	mlx_hook(app->window, 17, 0, close_window, app);
 	mlx_loop(app->mlx);
 	return (0);

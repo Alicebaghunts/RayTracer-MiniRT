@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 16:05:03 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/22 23:43:32 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/15 17:13:17 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ static void	draw_pixel(t_mlx *app, t_camera *cam, int x, int y)
 			hit.normal = vector_scale(hit.normal, -1.0);
 		shaded = shade(app->scene, hit.hit_point, hit.normal, hit.closest);
 		rgb = (shaded.red << 16) | (shaded.green << 8) | shaded.blue;
-		mlx_pixel_put(app->mlx, app->window, x, y, rgb);
+		my_mlx_pixel_put(app, x, y, rgb);
 	}
 	else
-		mlx_pixel_put(app->mlx, app->window, x, y, 0x000000);
+		my_mlx_pixel_put(app, x, y, 0x000000);
 }
 
 void	drawing(t_mlx *app)
@@ -126,4 +126,5 @@ void	drawing(t_mlx *app)
 		}
 		y++;
 	}
+	mlx_put_image_to_window(app->mlx, app->window, app->img, 0, 0);
 }

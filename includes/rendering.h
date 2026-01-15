@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:12:05 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/24 18:13:27 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/15 17:14:02 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,11 @@ typedef struct s_mlx
 	void		*mlx;
 	void		*window;
 	t_scene		*scene;
+	void		*img;
+	char		*img_addr;
+	int			img_bpp;
+	int			img_size_line;
+	int			img_endian;
 }				t_mlx;
 
 typedef struct s_hit
@@ -123,6 +128,9 @@ float get_sphere_bump(t_sphere *sp, float u, float v);
 t_vector sphere_tangent(t_vector normal);
 t_vector sphere_bitangent(t_vector normal, t_vector tangent);
 t_vector apply_sphere_bump(t_vector normal, float bump_value, t_vector tangent);
+
+void	my_mlx_pixel_put(t_mlx *app, int x, int y, int color);
+unsigned int	my_mlx_pixel_get(t_mlx *app, int x, int y);
 
 void	destroy_app(t_mlx *app);
 int	close_window(t_mlx *app);
