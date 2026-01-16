@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 16:05:03 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/15 18:17:46 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:38:03 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ t_vector	get_normal(t_object *obj, t_vector hit_point)
 	return (cylinder_normal(obj->data->cylinder, hit_point));
 }
 
-/* prototype implemented in thread_utils.c */
 int	start_render_threads(t_mlx *app);
 
 t_object	*find_closest_object(t_scene *scene, t_camera *cam,
@@ -87,6 +86,5 @@ void	drawing(t_mlx *app)
 {
     if (!app || !app->scene)
         return ;
-    /* start_render_threads handles thread creation, joining and presentation */
     start_render_threads(app);
 }

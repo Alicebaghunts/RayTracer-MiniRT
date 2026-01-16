@@ -49,6 +49,7 @@ SRCS = \
 	$(INITIALIZATION_DIR)/utils/init_texture.c \
 	$(RAY_TRACING_DIR)/shade.c \
 	$(RAY_TRACING_DIR)/drawing.c \
+	$(RAY_TRACING_DIR)/thread_utils.c \
 	$(RAY_TRACING_DIR)/intersect.c \
 	$(RAY_TRACING_DIR)/ligthing.c \
 	$(RAY_TRACING_DIR)/ambient.c \
