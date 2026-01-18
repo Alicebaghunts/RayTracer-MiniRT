@@ -115,7 +115,7 @@ int	start_render_threads(t_mlx *app)
 	t_list		*cn;
 	t_camera	*cam;
 	int			j;
-	int			j;
+	
 
 	if (!app || !app->scene)
 		return (-1);

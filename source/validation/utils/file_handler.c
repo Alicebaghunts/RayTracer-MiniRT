@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:34:10 by alisharu          #+#    #+#             */
-/*   Updated: 2025/09/10 20:22:08 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/18 19:59:51 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	**read_in_map_file(int fd)
 		line = get_next_line(fd);
 	}
 	check_height(height, map);
-	return (map[height - 1] = NULL, map);
+	return (map[height] = NULL, map);
 }
 
 int	check_and_open_map_file(char *path)
