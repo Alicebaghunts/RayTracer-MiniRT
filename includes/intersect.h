@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 23:09:14 by alisharu          #+#    #+#             */
-/*   Updated: 2025/10/08 15:05:50 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/18 20:09:05 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,15 @@ double			intersect_cylinder(t_ray_data data, t_hit_type *hit_type);
 int				check_cylinder_height(t_vector hit, t_cylinder *cy,
 					t_vector axis);
 double			check_disk_hit(t_camera *cam, t_vector ray, t_disk disk);
-double			check_disk_hit_shadow(t_vector origin, t_vector dir, t_disk disk);
+double			check_disk_hit_shadow(t_vector origin, t_vector dir,
+					t_disk disk);
 t_quad			cylinder_coeffs(t_vector dir, t_vector oc, t_vector axis,
 					double radius);
 double			pick_root(t_quad q);
 t_vector		compute_hit(t_camera *cam, t_vector dir, double t);
-double	intersect_cone_shadow(t_vector origin, t_vector dir, t_cone *cone);
-t_vector	cone_normal(t_cone *cone, t_vector hit_point);
-double	intersect_cone(t_camera *cam, t_vector dir, t_cone *cone);
+double			intersect_cone_shadow(t_vector origin, t_vector dir,
+					t_cone *cone);
+t_vector		cone_normal(t_cone *cone, t_vector hit_point);
+double			intersect_cone(t_camera *cam, t_vector dir, t_cone *cone);
 
 #endif

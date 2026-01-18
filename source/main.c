@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:33:32 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/15 17:13:09 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/18 20:09:10 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,9 @@ t_mlx	*mlx_init_scene(t_scene *scene, int width, int height, char *title)
 		free(mlx_struct);
 		return (NULL);
 	}
-	mlx_struct->img_addr = mlx_get_data_addr(mlx_struct->img, &mlx_struct->img_bpp,
-		&mlx_struct->img_size_line, &mlx_struct->img_endian);
+	mlx_struct->img_addr = mlx_get_data_addr(mlx_struct->img,
+			&mlx_struct->img_bpp, &mlx_struct->img_size_line,
+			&mlx_struct->img_endian);
 	if (!mlx_struct->img_addr)
 	{
 		free(mlx_struct->mlx);

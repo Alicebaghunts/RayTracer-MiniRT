@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:12:05 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/15 18:36:34 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/18 20:08:56 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 # include "intersect.h"
 
 # define RAY_EPS 1e-6
-#ifdef __APPLE__
-# define KEY_ESC 53
-# define KEY_SPACE 49
-#else
-# define KEY_ESC 65307
-# define KEY_SPACE 32
-#endif
+# ifdef __APPLE__
+#  define KEY_ESC 53
+#  define KEY_SPACE 49
+# else
+#  define KEY_ESC 65307
+#  define KEY_SPACE 32
+# endif
 
 // ray info
 typedef struct s_rayinfo
@@ -124,19 +124,20 @@ t_color			compute_ambient(t_scene *scene, t_color obj_color);
 void			add_light_contribution_struct(t_light_info *info);
 
 //
-float get_sphere_bump(t_sphere *sp, float u, float v);
-t_vector sphere_tangent(t_vector normal);
-t_vector sphere_bitangent(t_vector normal, t_vector tangent);
-t_vector apply_sphere_bump(t_vector normal, float bump_value, t_vector tangent);
+float			get_sphere_bump(t_sphere *sp, float u, float v);
+t_vector		sphere_tangent(t_vector normal);
+t_vector		sphere_bitangent(t_vector normal, t_vector tangent);
+t_vector		apply_sphere_bump(t_vector normal, float bump_value,
+					t_vector tangent);
 
-void		my_mlx_pixel_put(t_mlx *app, int x, int y, int color);
+void			my_mlx_pixel_put(t_mlx *app, int x, int y, int color);
 unsigned int	my_mlx_pixel_get(t_mlx *app, int x, int y);
 
-void	destroy_app(t_mlx *app);
-int	close_window(t_mlx *app);
-void	switch_camera(t_mlx *app);
-t_object	*get_object_at_pixel(t_mlx *app, int x, int y);
-void	cycle_render_mode(t_mlx *app, t_object *obj);
-t_vector	get_normal(t_object *obj, t_vector hit_point);
+void			destroy_app(t_mlx *app);
+int				close_window(t_mlx *app);
+void			switch_camera(t_mlx *app);
+t_object		*get_object_at_pixel(t_mlx *app, int x, int y);
+void			cycle_render_mode(t_mlx *app, t_object *obj);
+t_vector		get_normal(t_object *obj, t_vector hit_point);
 
 #endif
