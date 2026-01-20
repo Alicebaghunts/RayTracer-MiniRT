@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 13:24:28 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/20 13:40:59 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/20 21:09:42 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	init_window_img(t_mlx *app, int w, int h, char *title)
 		return (0);
 	return (1);
 }
-
 
 t_mlx	*mlx_init_scene(t_scene *scene, int width, int height, char *title)
 {

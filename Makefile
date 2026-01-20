@@ -65,6 +65,9 @@ SRCS = \
 	$(RAY_TRACING_DIR)/checkerboard/sphere_checkerboard.c \
 	$(RAY_TRACING_DIR)/utils/utils.c \
 	$(RAY_TRACING_DIR)/utils/mlx_utils.c \
+	$(RAY_TRACING_DIR)/utils/cylinder_utils.c \
+	$(RAY_TRACING_DIR)/utils/cone_utils.c \
+	$(RAY_TRACING_DIR)/utils/angle_utils.c \
 	$(FORMULAS_DIR)/cylinder/cylinder_caps.c \
 	$(FORMULAS_DIR)/cylinder/cylinder_disk.c \
 	$(FORMULAS_DIR)/cylinder/cylinder_shadow.c \
@@ -72,6 +75,7 @@ SRCS = \
 	$(FORMULAS_DIR)/cylinder/cylinder_intersect.c \
 	$(FORMULAS_DIR)/plane/plane_intersect.c \
 	$(FORMULAS_DIR)/cone/cone_intersect.c \
+	$(FORMULAS_DIR)/cone/cone_intersect_utils.c \
 	$(FORMULAS_DIR)/sphere/sphere_intersect.c \
 	$(FORMULAS_DIR)/vector/vector_formulas.c \
 	$(FORMULAS_DIR)/formulas.c \

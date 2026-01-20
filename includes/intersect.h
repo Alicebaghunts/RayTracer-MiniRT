@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 23:09:14 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/18 20:09:05 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/20 21:30:21 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,10 @@ double			intersect_cone_shadow(t_vector origin, t_vector dir,
 					t_cone *cone);
 t_vector		cone_normal(t_cone *cone, t_vector hit_point);
 double			intersect_cone(t_camera *cam, t_vector dir, t_cone *cone);
-
+t_disk			cone_base_disk(t_cone *cone, t_vector v);
+double			cone_side_shadow(t_vector origin, t_vector dir, t_cone *cone);
+t_quad			cone_quadratic(t_vector dir, t_vector oc, t_vector v,
+					double cos_angle);
+double			select_cone_root(t_quad q, t_vector dir, t_vector oc,
+					t_cone *cone);
 #endif

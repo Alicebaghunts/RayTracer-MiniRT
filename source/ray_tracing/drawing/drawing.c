@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 16:05:03 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/20 13:46:19 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/20 21:17:49 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ t_vector	get_normal(t_object *obj, t_vector hit_point)
 	return (cylinder_normal(obj->data->cylinder, hit_point));
 }
 
-int				start_render_threads(t_mlx *app);
-
 t_object	*find_closest_object(t_scene *scene, t_camera *cam,
 		t_vector ray_dir, double *min_t)
 {
@@ -82,11 +80,6 @@ t_object	*find_closest_object(t_scene *scene, t_camera *cam,
 		node = node->next;
 	}
 	return (closest);
-}
-
-t_vector	sphere_bitangent(t_vector normal, t_vector tangent)
-{
-	return (vector_normalize(vector_cross(normal, tangent)));
 }
 
 void	drawing(t_mlx *app)

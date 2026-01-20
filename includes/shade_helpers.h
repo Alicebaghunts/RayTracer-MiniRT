@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 13:20:06 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/20 13:58:02 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/20 21:09:24 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,12 @@ t_color		get_object_checkerboard(t_object *obj, t_vector hit_point);
 /* bump maps */
 double		color_to_height(t_color c);
 t_vector	get_sphere_bump_normal(t_sphere *sphere, t_texture *bump,
-					 t_vector hit_point, t_vector normal);
+				t_vector hit_point, t_vector normal);
 t_vector	get_object_bump_normal(t_object *obj, t_texture *bump,
-					 t_vector hit_point, t_vector normal);
+				t_vector hit_point, t_vector normal);
 
 /* basis helpers */
 t_vector	get_axis_up(t_vector axis);
 void		get_basis_from_axis(t_vector axis, t_vector *t, t_vector *b);
 
-/* lights */
-/* light helpers are declared in shade_utils.h to avoid leaking light types here */
-
-#endif /* SHADE_HELPERS_H */
+#endif 

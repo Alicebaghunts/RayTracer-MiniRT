@@ -6,35 +6,11 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 13:08:23 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/20 15:02:08 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/20 21:15:47 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rendering.h"
-#include <math.h>
-
-static t_vector	get_up_axis(t_vector axis)
-{
-	if (fabs(axis.y) > 0.999)
-		return ((t_vector){1.0, 0.0, 0.0});
-	return ((t_vector){0.0, 1.0, 0.0});
-}
-
-static void	get_cy_basis(t_vector axis, t_vector *t, t_vector *b)
-{
-	t_vector	up;
-
-	up = get_up_axis(axis);
-	*t = normalize(vector_cross(up, axis));
-	*b = normalize(vector_cross(axis, *t));
-}
-
-static double	wrap_angle(double ang)
-{
-	if (ang < 0.0)
-		ang += 2.0 * M_PI;
-	return (ang);
-}
 
 static t_color	checker_from_uv(int u, int v)
 {
@@ -62,7 +38,10 @@ static t_color	get_cy_side_checker(t_cylinder *cy, t_vector rel, t_vector axis,
 	int		uvi[2];
 
 	ang = wrap_angle(atan2(vector_dot(rel, tb[1]), vector_dot(rel, tb[0])));
-	h = (cy->height > 0.0) ? cy->height : 1.0;
+	if (cy->height > 0.0)
+		h = cy->height;
+	else
+		h = 1.0;
 	v = (vector_dot(rel, axis) + h * 0.5) / h;
 	uvi[0] = (int)floor((ang / (2.0 * M_PI)) * 10.0);
 	uvi[1] = (int)floor(v * 10.0);
@@ -73,10 +52,10 @@ static t_color	get_cy_cap_checker(t_cylinder *cy, t_vector rel, t_vector axis,
 		t_vector tb[2])
 {
 	t_vector	cap_rel;
-	double	hp;
-	double	r;
-	double	step;
-	int		uvi[2];
+	double		hp;
+	double		r;
+	double		step;
+	int			uvi[2];
 
 	hp = cy->height * 0.5;
 	if (vector_dot(rel, axis) > 0.0)

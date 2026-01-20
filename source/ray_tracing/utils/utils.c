@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/20 12:00:58 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/20 13:15:53 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/20 21:17:58 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,9 @@ void	clamp_color(t_color *c)
 double	color_to_height(t_color c)
 {
 	return (((c.red + c.green + c.blue) / 3.0) / 255.0);
+}
+
+t_vector	sphere_bitangent(t_vector normal, t_vector tangent)
+{
+	return (vector_normalize(vector_cross(normal, tangent)));
 }
