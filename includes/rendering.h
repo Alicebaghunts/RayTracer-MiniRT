@@ -6,14 +6,21 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:12:05 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/18 20:08:56 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:55:36 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RENDERING_H
 # define RENDERING_H
+#include "shade_helpers.h"
 # include "initialization.h"
 # include "intersect.h"
+# include <pthread.h>
+# include <stdlib.h>
+
+# ifndef THREADS
+#  define THREADS 8
+# endif
 
 # define RAY_EPS 1e-6
 # ifdef __APPLE__
@@ -96,6 +103,14 @@ typedef struct s_hit
 	t_color		shaded;
 }				t_hit;
 
+typedef struct s_draw_args
+{
+	t_mlx		*app;
+	t_camera	*cam;
+	int			y_start;
+	int			y_end;
+}				t_draw_args;
+
 void			drawing(t_mlx *app);
 double			vector_length(t_vector vector);
 double			vector_dot(t_vector a, t_vector b);
@@ -140,4 +155,18 @@ t_object		*get_object_at_pixel(t_mlx *app, int x, int y);
 void			cycle_render_mode(t_mlx *app, t_object *obj);
 t_vector		get_normal(t_object *obj, t_vector hit_point);
 
+void			render_single(t_mlx *app, t_camera *cam);
+void			cleanup_and_fallback(pthread_t threads[], int count, t_mlx *app,
+					t_camera *cam);
+t_camera		*get_active_camera(t_mlx *app);
+void			render_pixel_to_app(t_mlx *app, t_camera *cam, int x, int y);
+
+void			clamp_color(t_color *c);
+t_render_mode	get_render_mode(t_scene *scene, t_object *obj);
+int				has_sphere_tex(t_object *obj);
+t_mlx			*alloc_app(t_scene *scene);
+int				init_mlx(t_mlx *app);
+int				init_window_img(t_mlx *app, int w, int h, char *title);
+t_mlx			*mlx_init_scene(t_scene *scene, int width, int height,
+					char *title);
 #endif

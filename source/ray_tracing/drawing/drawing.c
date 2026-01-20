@@ -6,17 +6,24 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 16:05:03 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/15 18:38:03 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:46:19 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rendering.h"
-#include <pthread.h>
-#include <stdlib.h>
 
-#ifndef THREADS
-# define THREADS 8
-#endif
+t_color	compute_ambient(t_scene *scene, t_color obj_color)
+{
+	t_color	result;
+
+	result.red = (int)(obj_color.red * scene->ambient->color->red / 255.0
+			* scene->ambient->light_ratio);
+	result.green = (int)(obj_color.green * scene->ambient->color->green / 255.0
+			* scene->ambient->light_ratio);
+	result.blue = (int)(obj_color.blue * scene->ambient->color->blue / 255.0
+			* scene->ambient->light_ratio);
+	return (result);
+}
 
 static double	get_intersection(t_object *obj, t_camera *cam, t_vector ray_dir)
 {
@@ -50,10 +57,10 @@ t_vector	get_normal(t_object *obj, t_vector hit_point)
 	return (cylinder_normal(obj->data->cylinder, hit_point));
 }
 
-int	start_render_threads(t_mlx *app);
+int				start_render_threads(t_mlx *app);
 
 t_object	*find_closest_object(t_scene *scene, t_camera *cam,
-						 t_vector ray_dir, double *min_t)
+		t_vector ray_dir, double *min_t)
 {
 	t_list		*node;
 	t_object	*obj;
@@ -84,7 +91,7 @@ t_vector	sphere_bitangent(t_vector normal, t_vector tangent)
 
 void	drawing(t_mlx *app)
 {
-    if (!app || !app->scene)
-        return ;
-    start_render_threads(app);
+	if (!app || !app->scene)
+		return ;
+	start_render_threads(app);
 }

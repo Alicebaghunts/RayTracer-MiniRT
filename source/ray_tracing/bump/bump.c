@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 18:16:58 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/24 16:25:47 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:32:13 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ float	get_sphere_bump(t_sphere *sp, float u, float v)
 
 t_vector	sphere_tangent(t_vector normal)
 {
-	t_vector	up = {0, 1, 0};
+	t_vector	up;
 	t_vector	tangent;
 
+	up = (t_vector){0, 1, 0};
 	if (fabs(normal.y) > 0.99)
 		up = (t_vector){1, 0, 0};
 	tangent = vector_normalize(vector_cross(up, normal));

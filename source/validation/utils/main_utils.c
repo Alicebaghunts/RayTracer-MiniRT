@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 17:56:26 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/16 20:29:54 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:22:38 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	destroy_app(t_mlx *app)
 {
 	if (!app)
 		return ;
+	if (app->img && app->mlx)
+		mlx_destroy_image(app->mlx, app->img);
 	if (app->window && app->mlx)
 		mlx_destroy_window(app->mlx, app->window);
-	if (app->scene)
-		free_scene(app->scene);
 	if (app->mlx)
 		free(app->mlx);
 	free(app);

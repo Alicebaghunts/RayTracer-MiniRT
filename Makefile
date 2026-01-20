@@ -47,16 +47,24 @@ SRCS = \
 	$(INITIALIZATION_DIR)/utils/normalize_utils.c \
 	$(INITIALIZATION_DIR)/utils/normalize_normals.c \
 	$(INITIALIZATION_DIR)/utils/init_texture.c \
-	$(RAY_TRACING_DIR)/shade.c \
-	$(RAY_TRACING_DIR)/drawing.c \
-	$(RAY_TRACING_DIR)/thread_utils.c \
-	$(RAY_TRACING_DIR)/intersect.c \
-	$(RAY_TRACING_DIR)/ligthing.c \
-	$(RAY_TRACING_DIR)/ambient.c \
-	$(RAY_TRACING_DIR)/shadow.c \
-	$(RAY_TRACING_DIR)/object.c \
-	$(RAY_TRACING_DIR)/bump.c \
-	$(RAY_TRACING_DIR)/my_mlx_pixel_put.c \
+	$(INITIALIZATION_DIR)/utils/init_mlx.c \
+	$(RAY_TRACING_DIR)/shade/shadow.c \
+	$(RAY_TRACING_DIR)/shade/shade.c \
+	$(RAY_TRACING_DIR)/shade/shade_utils.c \
+	$(RAY_TRACING_DIR)/thread/thread_utils.c \
+	$(RAY_TRACING_DIR)/thread/thread.c \
+	$(RAY_TRACING_DIR)/drawing/intersect.c \
+	$(RAY_TRACING_DIR)/drawing/drawing.c \
+	$(RAY_TRACING_DIR)/drawing/ligthing.c \
+	$(RAY_TRACING_DIR)/bump/bump.c \
+	$(RAY_TRACING_DIR)/bump/sphere_bump.c \
+	$(RAY_TRACING_DIR)/bump/texture.c \
+	$(RAY_TRACING_DIR)/checkerboard/cone_checkerboard.c \
+	$(RAY_TRACING_DIR)/checkerboard/cylinder_checkerboard.c \
+	$(RAY_TRACING_DIR)/checkerboard/plane_checkerboard.c \
+	$(RAY_TRACING_DIR)/checkerboard/sphere_checkerboard.c \
+	$(RAY_TRACING_DIR)/utils/utils.c \
+	$(RAY_TRACING_DIR)/utils/mlx_utils.c \
 	$(FORMULAS_DIR)/cylinder/cylinder_caps.c \
 	$(FORMULAS_DIR)/cylinder/cylinder_disk.c \
 	$(FORMULAS_DIR)/cylinder/cylinder_shadow.c \
