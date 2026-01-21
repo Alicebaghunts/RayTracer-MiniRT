@@ -41,6 +41,15 @@ static int	is_valid_cylinder(char **line)
 
 void	validate_cylinder(char **map, char **line)
 {
+	int	len;
+
+	len = matrix_len(line);
+	if (len == 7 && line[6] && !ft_is_valid_xpm_path(line[6]))
+	{
+		ft_free_matrix(line);
+		ft_free_matrix(map);
+		error_handling(INVALID_PATH);
+	}
 	if (!is_valid_cylinder(line))
 	{
 		ft_free_matrix(line);

@@ -38,6 +38,16 @@ static int	is_valid_sphere(char **line)
 
 void	validate_sphere(char **map, char **line)
 {
+	int	len;
+
+	len = matrix_len(line);
+	if ((len >= 5 && line[4] && !ft_is_valid_xpm_path(line[4]))
+		|| (len >= 6 && line[5] && !ft_is_valid_xpm_path(line[5])))
+	{
+		ft_free_matrix(line);
+		ft_free_matrix(map);
+		error_handling(INVALID_PATH);
+	}
 	if (!is_valid_sphere(line))
 	{
 		ft_free_matrix(line);

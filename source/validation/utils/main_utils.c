@@ -82,3 +82,10 @@ void	cycle_render_mode(t_mlx *app, t_object *obj)
 	mlx_clear_window(app->mlx, app->window);
 	drawing(app);
 }
+
+int	is_valid_brightness_ratio(char *line)
+{
+	if (!is_valid_float(line) || !is_in_range_float(line, 0.0, 1.0))
+		return (0);
+	return (1);
+}

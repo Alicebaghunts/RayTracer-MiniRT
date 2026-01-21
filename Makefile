@@ -2,20 +2,20 @@ MAKEFLAGS += --no-print-directory
 
 NAME = miniRT
 
-SRC_DIR         = source
-OBJ_DIR         = build
-LIB_DIR         = libs
-INC_DIR         = includes
+SRC_DIR       		= 	source
+OBJ_DIR         	= 	build
+LIB_DIR         	= 	libs
+INC_DIR         	=	includes
 
-VALIDATION_DIR  = $(SRC_DIR)/validation
-INITIALIZATION_DIR  = $(SRC_DIR)/initialization
-PARSE_DIR       = $(SRC_DIR)/parse
-GRAPHICS_DIR    = $(SRC_DIR)/graphics
-RAY_TRACING_DIR = $(SRC_DIR)/ray_tracing
-VECTOR_DIR      = $(SRC_DIR)/vector
-FORMULAS_DIR	= $(SRC_DIR)/formulas
-MINILIBX_DIR    = $(LIB_DIR)/minilibx_macos
-LIBFT_DIR       = $(LIB_DIR)/libft
+INITIALIZATION_DIR  = 	$(SRC_DIR)/initialization
+VALIDATION_DIR  	= 	$(SRC_DIR)/validation
+PARSE_DIR       	= 	$(SRC_DIR)/parse
+GRAPHICS_DIR    	= 	$(SRC_DIR)/graphics
+RAY_TRACING_DIR 	= 	$(SRC_DIR)/ray_tracing
+VECTOR_DIR      	= 	$(SRC_DIR)/vector
+FORMULAS_DIR		= 	$(SRC_DIR)/formulas
+MINILIBX_DIR    	= 	$(LIB_DIR)/minilibx_macos
+LIBFT_DIR       	= 	$(LIB_DIR)/libft
 
 SRCS = \
 	$(SRC_DIR)/main.c \
@@ -84,6 +84,7 @@ SRCS = \
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 CC = cc
+
 CFLAGS = -Wall -Wextra -Werror -DGL_SILENCE_DEPRECATION -g3 
 
 INCS  = -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MINILIBX_DIR)

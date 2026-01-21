@@ -11,6 +11,60 @@
 /* ************************************************************************** */
 
 #include "validation.h"
+#include <limits.h>
+
+/*
+ * Parse integer from string with overflow detection for 32-bit int.
+ * If parsing succeeds and value fits in int, *ok is set to 1 and the value
+ * is returned. Otherwise *ok is set to 0.
+ */
+static int	parse_int_checked(const char *s, int *ok)
+{
+	int		i;
+	int		sign;
+	unsigned long long	acc;
+
+	if (!s || !*s)
+	{
+		*ok = 0;
+		return (0);
+	}
+	i = 0;
+	sign = 1;
+	if (s[i] == '+' || s[i] == '-')
+	{
+		if (s[i] == '-')
+			sign = -1;
+		i++;
+	}
+	if (!s[i])
+	{
+		*ok = 0;
+		return (0);
+	}
+	acc = 0ULL;
+	while (s[i])
+	{
+		if (!ft_isdigit(s[i]))
+			return (*ok = 0, 0);
+		acc = acc * 10ULL + (unsigned long long)(s[i] - '0');
+		if (sign == 1)
+		{
+			if (acc > (unsigned long long)INT_MAX)
+				return (*ok = 0, 0);
+		}
+		else
+		{
+			if (acc > (unsigned long long)INT_MAX + 1ULL)
+				return (*ok = 0, 0);
+		}
+		i++;
+	}
+	*ok = 1;
+	if (sign == 1)
+		return ((int)acc);
+	return (-(int)acc);
+}
 
 int	is_in_range_float(const char *str, float min, float max)
 {
@@ -27,11 +81,14 @@ int	is_in_range_float(const char *str, float min, float max)
 int	is_in_range_int(const char *str, float min, float max)
 {
 	int	val;
+	int	ok;
 
 	if (!str)
 		return (0);
-	val = ft_atoi(str);
-	if (val < min || val > max)
+	val = parse_int_checked(str, &ok);
+	if (!ok)
+		return (0);
+	if (val < (int)min || val > (int)max)
 		return (0);
 	return (1);
 }
@@ -67,25 +124,10 @@ int	is_valid_float(const char *str)
 
 int	is_valid_number(char *num_str)
 {
-	int	i;
+	int	ok;
 
-	i = 0;
 	if (!num_str)
 		return (0);
-	if (num_str[0] == '-' || num_str[0] == '+')
-		i++;
-	while (num_str[i])
-	{
-		if (!ft_isdigit(num_str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	is_valid_brightness_ratio(char *line)
-{
-	if (!is_valid_float(line) || !is_in_range_float(line, 0.0, 1.0))
-		return (0);
-	return (1);
+	parse_int_checked(num_str, &ok);
+	return (ok);
 }

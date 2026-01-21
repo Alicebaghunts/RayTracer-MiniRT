@@ -36,6 +36,15 @@ static int	is_valid_cone(char **line)
 
 void	validate_cone(char **map, char **line)
 {
+	int	len;
+
+	len = matrix_len(line);
+	if (len == 7 && line[6] && !ft_is_valid_xpm_path(line[6]))
+	{
+		ft_free_matrix(line);
+		ft_free_matrix(map);
+		error_handling(INVALID_PATH);
+	}
 	if (!is_valid_cone(line))
 	{
 		ft_free_matrix(line);

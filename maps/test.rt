@@ -12,3 +12,5 @@ sp 5,3,9 1.3 230,80,180
 sp 0,0,12 1.4 255,255,255
 sp 0,-4,15 3.4 255,0,0  
 
+# when have wrong path bump map or texture, check existance of path
+# 2^64
