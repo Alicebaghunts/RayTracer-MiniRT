@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:32:03 by alisharu          #+#    #+#             */
-/*   Updated: 2025/09/16 18:43:21 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/21 09:11:19 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ static t_light	*create_light(char **line)
 	light->color = parse_color(line[3]);
 	if (!light->position || !light->color)
 	{
+		if (light->position)
+			free(light->position);
+		if (light->color)
+			free(light->color);
 		free(light);
 		return (NULL);
 	}

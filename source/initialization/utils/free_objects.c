@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 09:31:40 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/22 21:35:02 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/21 09:58:37 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ void	free_sphere(t_sphere *sphere)
 	{
 		if (sphere->texture->path)
 			free(sphere->texture->path);
-		free(sphere->texture);
+		if (sphere->texture->img)
+			free(sphere->texture);
 	}
 	if (sphere->bump)
 	{
 		if (sphere->bump->path)
 			free(sphere->bump->path);
-		free(sphere->bump);
+		if (sphere->bump->img)
+			free(sphere->bump);
 	}
 	free(sphere);
 }
@@ -49,7 +51,8 @@ void	free_plane(t_plane *plane)
 	{
 		if (plane->texture->path)
 			free(plane->texture->path);
-		free(plane->texture);
+		if (plane->texture->img)
+			free(plane->texture);
 	}
 	free(plane);
 }
@@ -68,7 +71,15 @@ void	free_cylinder(t_cylinder *cylinder)
 	{
 		if (cylinder->texture->path)
 			free(cylinder->texture->path);
-		free(cylinder->texture);
+		if (cylinder->texture->img)
+			free(cylinder->texture);
+	}
+	if (cylinder->bump)
+	{
+		if (cylinder->bump->path)
+			free(cylinder->bump->path);
+		if (cylinder->bump->img)
+			free(cylinder->bump);
 	}
 	free(cylinder);
 }
@@ -87,6 +98,8 @@ void	free_cone(t_cone *cone)
 	{
 		if (cone->texture->path)
 			free(cone->texture->path);
+		if (cone->texture->img)
+			;
 		free(cone->texture);
 	}
 	free(cone);

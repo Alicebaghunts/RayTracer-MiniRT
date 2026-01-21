@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:12:05 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/20 21:29:32 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:12:04 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ t_mlx			*mlx_init_scene(t_scene *scene, int width, int height,
 void			compute_lights(t_shade_info info);
 double			wrap_angle(double ang);
 int				start_render_threads(t_mlx *app);
-
+void			destroy_scene_images(t_mlx *app);
 // cylinder
 void			get_cy_basis(t_vector axis, t_vector *t, t_vector *b);
 

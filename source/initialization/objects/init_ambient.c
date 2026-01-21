@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:31:40 by alisharu          #+#    #+#             */
-/*   Updated: 2025/09/01 00:47:22 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:05:54 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ t_color	*parse_color(char *line)
 		return (NULL);
 	color = malloc(sizeof(t_color));
 	if (!color)
+	{
+		ft_free_matrix(matrix_color);
 		return (NULL);
+	}
 	color->red = ft_atoi(matrix_color[0]);
 	color->green = ft_atoi(matrix_color[1]);
 	color->blue = ft_atoi(matrix_color[2]);
@@ -45,6 +48,8 @@ void	init_ambient(t_scene *scene, char **line, char **map)
 	scene->ambient->color = parse_color(line[2]);
 	if (scene->ambient->color == NULL)
 	{
+		free(scene->ambient);
+		scene->ambient = NULL;
 		free_scene_inits(scene, line, map);
 		error_handling(MALLOC_ERROR);
 	}

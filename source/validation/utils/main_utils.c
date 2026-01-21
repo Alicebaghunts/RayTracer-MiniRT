@@ -6,27 +6,17 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 17:56:26 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/20 13:22:38 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/21 10:07:31 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rendering.h"
 
-void	destroy_app(t_mlx *app)
-{
-	if (!app)
-		return ;
-	if (app->img && app->mlx)
-		mlx_destroy_image(app->mlx, app->img);
-	if (app->window && app->mlx)
-		mlx_destroy_window(app->mlx, app->window);
-	if (app->mlx)
-		free(app->mlx);
-	free(app);
-}
-
 int	close_window(t_mlx *app)
 {
+	destroy_scene_images(app);
+	if (app && app->scene)
+		free_scene(app->scene);
 	destroy_app(app);
 	exit(0);
 	return (0);

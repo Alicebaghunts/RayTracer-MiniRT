@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:33:32 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/20 13:26:55 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/21 09:15:41 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ int	main(int argc, char **argv)
 	mlx_mouse_hook(app->window, mouse_hook, app);
 	mlx_hook(app->window, 17, 0, close_window, app);
 	mlx_loop(app->mlx);
+	destroy_app(app);
+	free_scene(app->scene);
 	return (0);
 }

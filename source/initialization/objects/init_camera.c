@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/27 21:31:55 by alisharu          #+#    #+#             */
-/*   Updated: 2025/09/16 18:44:28 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/21 09:11:19 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,12 @@ t_vector	*init_vector(char *line)
 	matrix_vector = ft_split(line, ',');
 	if (!matrix_vector || !matrix_vector[0] || !matrix_vector[1]
 		|| !matrix_vector[2])
+	{
+		if (matrix_vector)
+			ft_free_matrix(matrix_vector);
+		free(vector);
 		return (NULL);
+	}
 	vector->x = ft_atof(matrix_vector[0]);
 	vector->y = ft_atof(matrix_vector[1]);
 	vector->z = ft_atof(matrix_vector[2]);
@@ -46,6 +51,10 @@ static t_camera	*create_camera(char **line)
 	camera->field_of_view = ft_atoi(line[3]);
 	if (!camera->position || !camera->direction)
 	{
+		if (camera->position)
+			free(camera->position);
+		if (camera->direction)
+			free(camera->direction);
 		free(camera);
 		return (NULL);
 	}

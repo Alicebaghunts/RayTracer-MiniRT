@@ -32,6 +32,7 @@ SRCS = \
 	$(VALIDATION_DIR)/utils/file_handler_utils.c \
 	$(VALIDATION_DIR)/utils/file_handler.c \
 	$(VALIDATION_DIR)/utils/main_utils.c \
+	$(VALIDATION_DIR)/utils/destroy.c \
 	$(INITIALIZATION_DIR)/initialization.c \
 	$(INITIALIZATION_DIR)/objects/init_ambient.c \
 	$(INITIALIZATION_DIR)/objects/init_camera.c \
