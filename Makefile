@@ -84,7 +84,7 @@ SRCS = \
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -DGL_SILENCE_DEPRECATION -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -DGL_SILENCE_DEPRECATION -g3 
 
 INCS  = -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MINILIBX_DIR)
 LIBS  = -L$(LIBFT_DIR) -lft -L$(MINILIBX_DIR) -lmlx
