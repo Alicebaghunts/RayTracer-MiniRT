@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "validation.h"
-#include <limits.h>
 
 static int	parse_int_checked(const char *s, int *ok)
 {
@@ -22,23 +21,15 @@ static int	parse_int_checked(const char *s, int *ok)
 	if (!s || !*s)
 		return (*ok = 0, 0);
 	i = 0;
-	sign = 1;
-	if (s[i] == '+' || s[i] == '-')
-	{
-		if (s[i] == '-')
-			sign = -1;
-		i++;
-	}
+	sign = get_sign(s, &i);
 	if (!s[i])
 		return (*ok = 0, 0);
 	acc = 0;
 	while (s[i])
 	{
-		if (!ft_isdigit(s[i]))
-			return (*ok = 0, 0);
-		if (sign == 1 && acc > (INT_MAX - (s[i] - '0')) / 10)
-			return (*ok = 0, 0);
-		if (sign == -1 && acc > (-(INT_MIN + (s[i] - '0'))) / 10)
+		if (!ft_isdigit(s[i])
+			|| (sign == 1 && acc > (INT_MAX - (s[i] - '0')) / 10)
+			|| (sign == -1 && acc > (-(INT_MIN + (s[i] - '0'))) / 10))
 			return (*ok = 0, 0);
 		acc = acc * 10 + (s[i] - '0');
 		i++;
