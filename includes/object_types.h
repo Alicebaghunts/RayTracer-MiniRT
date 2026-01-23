@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:34:48 by alisharu          #+#    #+#             */
-/*   Updated: 2025/12/25 19:40:25 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/23 11:35:43 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <math.h>
 # include <stdbool.h>
 
+/* ------------------------ Constants ------------------------ */
 # define INVALID_ARGUMENT 1
 # define INVALID_PATH 2
 # define INVALID_FILE 3
@@ -25,6 +26,7 @@
 # define MLX_X 800
 # define MLX_Y 600
 
+/* ------------------------ Hit types ------------------------ */
 typedef enum e_hit_type
 {
 	HIT_NONE,
@@ -33,6 +35,7 @@ typedef enum e_hit_type
 	HIT_CYLINDER_BOTTOM
 }					t_hit_type;
 
+/* ------------------------ Texture ------------------------ */
 typedef struct s_texture
 {
 	char			*path;
@@ -45,6 +48,7 @@ typedef struct s_texture
 	int				endian;
 }					t_texture;
 
+/* ------------------------ Validation flags ------------------------ */
 typedef struct s_valid_object
 {
 	bool			camera;
@@ -52,6 +56,7 @@ typedef struct s_valid_object
 	bool			ambient;
 }					t_valid_object;
 
+/* ------------------------ Color & Vector ------------------------ */
 typedef struct s_color
 {
 	int				red;
@@ -66,12 +71,14 @@ typedef struct s_vector
 	double			z;
 }					t_vector;
 
+/* ------------------------ Lighting primitives ------------------------ */
 typedef struct s_ambient
 {
 	double			light_ratio;
 	t_color			*color;
 }					t_ambient;
 
+/* ------------------------ Camera ------------------------ */
 typedef struct s_camera
 {
 	t_vector		*position;
@@ -79,6 +86,7 @@ typedef struct s_camera
 	int				field_of_view;
 }					t_camera;
 
+/* ------------------------ Light ------------------------ */
 typedef struct s_light
 {
 	t_vector		*position;
@@ -86,6 +94,7 @@ typedef struct s_light
 	t_color			*color;
 }					t_light;
 
+/* ------------------------ Geometric primitives ------------------------ */
 typedef struct s_sphere
 {
 	t_vector		*position;
@@ -133,6 +142,7 @@ typedef struct s_cone
 	t_texture		*bump;
 }					t_cone;
 
+/* ------------------------ Object data ------------------------ */
 typedef union u_object_data
 {
 	t_sphere		*sphere;
@@ -141,12 +151,14 @@ typedef union u_object_data
 	t_cone			*cone;
 }					t_object_data;
 
+/* ------------------------ Object ------------------------ */
 typedef struct s_object
 {
 	char			type;
 	t_object_data	*data;
 }					t_object;
 
+/* ------------------------ Scene ------------------------ */
 typedef struct s_scene
 {
 	t_ambient		*ambient;
