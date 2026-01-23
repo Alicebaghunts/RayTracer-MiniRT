@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 18:12:05 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/23 11:37:04 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/01/23 11:42:36 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,11 +111,10 @@ typedef struct s_draw_args
 	int			y_end;
 }				t_draw_args;
 
-/* ------------------------ Rendering API & helpers ------------------------ */
-
+/* -------------------- Rendering API & helpers ------------------ */
 void			drawing(t_mlx *app);
 
-/* Vector */
+/* -------------------- Vector -------------------------------*/
 double			vector_length(t_vector vector);
 double			vector_dot(t_vector a, t_vector b);
 t_vector		vector_sub(t_vector a, t_vector b);
@@ -123,7 +122,7 @@ t_vector		vector_cross(t_vector a, t_vector b);
 t_vector		vector_scale(t_vector v, double s);
 t_vector		vector_addition(t_vector a, t_vector b);
 
-/* Object intersection / shading entry points */
+/* -------------------- Object intersection -------------------*/
 t_object		*find_closest_object(t_scene *scene, t_camera *cam,
 					t_vector ray_dir, double *min_t);
 double			intersect_sphere(t_camera *camera, t_vector ray_dir,
@@ -134,8 +133,7 @@ double			intersect_plane(t_camera *camera, t_vector ray_dir,
 t_color			shade(t_scene *scene, t_vector hit_point, t_vector normal,
 					t_object *obj);
 
-/* ------------------------ Pixel and image helpers ------------------------ */
-
+/* -------------------- Pixel and image helpers ------------------ */
 double			intersect_sphere_shadow(t_vector ray_origin, t_vector ray_dir,
 					t_sphere *sphere);
 
@@ -156,9 +154,7 @@ t_vector		apply_sphere_bump(t_vector normal, float bump_value,
 void			my_mlx_pixel_put(t_mlx *app, int x, int y, int color);
 unsigned int	my_mlx_pixel_get(t_mlx *app, int x, int y);
 
-/* ------------------------ Threading
-	/ render control helpers ------------------------ */
-
+/* ------------------------ Threading ------------------- */
 void			destroy_app(t_mlx *app);
 int				close_window(t_mlx *app);
 void			switch_camera(t_mlx *app);
@@ -185,8 +181,7 @@ double			wrap_angle(double ang);
 int				start_render_threads(t_mlx *app);
 void			destroy_scene_images(t_mlx *app);
 
-/* ------------------------ Cylinder
-	/ Cone basis helpers ------------------------ */
+/* ------------------------ Cylinder ------------------------ */
 void			get_cy_basis(t_vector axis, t_vector *t, t_vector *b);
 void			get_cone_basis(t_vector axis, t_vector *t, t_vector *b);
 t_vector		cone_normal(t_cone *cone, t_vector hit_point);
