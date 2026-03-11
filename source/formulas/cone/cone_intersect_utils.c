@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intersect.h"
-#include "rendering.h"
+#include "../../../includes/intersect.h"
+#include "../../../includes/rendering.h"
 
 t_quad	cone_quadratic(t_vector dir, t_vector oc, t_vector v,
 		double cos_angle)

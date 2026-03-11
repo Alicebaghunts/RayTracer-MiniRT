@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shade_utils.h"
+#include "../../../includes/shade_utils.h"
 
 void	init_light_info_base(t_light_info *li, t_shade_info *si, t_light *light)
 {

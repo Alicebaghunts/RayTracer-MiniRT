@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intersect.h"
-#include "rendering.h"
+#include "../../../includes/intersect.h"
+#include "../../../includes/rendering.h"
 
 t_color	get_object_color(t_object *obj)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "initialization.h"
+#include "../../../includes/initialization.h"
 
 static void	normalize_camera_direction(t_camera *camera)
 {

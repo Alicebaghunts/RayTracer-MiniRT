@@ -12,7 +12,7 @@
 
 #ifndef OBJECT_TYPES_H
 # define OBJECT_TYPES_H
-# include "libft.h"
+# include "../libs/libft/libft.h"
 # include <math.h>
 # include <stdbool.h>
 

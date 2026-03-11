@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "initialization.h"
+#include "../../../includes/initialization.h"
 
 void	free_sphere(t_sphere *sphere)
 {

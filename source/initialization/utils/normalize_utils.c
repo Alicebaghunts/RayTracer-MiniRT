@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "initialization.h"
+#include "../../../includes/initialization.h"
 
 double	vector_length(t_vector vector)
 {

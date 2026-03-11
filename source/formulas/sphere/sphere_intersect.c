@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intersect.h"
+#include "../../../includes/intersect.h"
 
 static t_roots	sphere_roots(t_vector oc, t_vector dir, double radius)
 {

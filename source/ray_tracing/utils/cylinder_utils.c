@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rendering.h"
+#include "../../../includes/rendering.h"
 
 static t_vector	get_up_axis(t_vector axis)
 {

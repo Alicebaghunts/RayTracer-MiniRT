@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "initialization.h"
+#include "../../../includes/initialization.h"
 
 t_vector	cylinder_normal(t_cylinder *cyl, t_vector hit_point)
 {

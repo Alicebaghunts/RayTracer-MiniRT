@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intersect.h"
+#include "../../../includes/intersect.h"
 
 static t_quad	cylinder_shadow_quadratic(t_vector dir, t_vector oc,
 		t_vector axis, double radius)

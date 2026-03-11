@@ -11,7 +11,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rendering.h"
+#include "../../../includes/rendering.h"
 
 void	render_single(t_mlx *app, t_camera *cam)
 {

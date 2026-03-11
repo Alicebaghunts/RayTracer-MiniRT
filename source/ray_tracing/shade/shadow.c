@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intersect.h"
-#include "rendering.h"
+#include "../../../includes/intersect.h"
+#include "../../../includes/rendering.h"
 
 static int	check_shadow_hit(t_object *obj, t_vector origin, t_vector dir,
 		double light_dist)

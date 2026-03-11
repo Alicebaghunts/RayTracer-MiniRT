@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "validation.h"
+#include "../../../includes/validation.h"
 
 int	is_valid_position_vector(char *line)
 {

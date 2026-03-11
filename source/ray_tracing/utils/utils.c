@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rendering.h"
+#include "../../../includes/rendering.h"
 
 t_render_mode	get_render_mode(t_scene *scene, t_object *obj)
 {

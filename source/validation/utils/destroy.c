@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rendering.h"
+#include "../../../includes/rendering.h"
 
 void	destroy_app(t_mlx *app)
 {

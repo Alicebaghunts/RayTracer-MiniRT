@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "validation.h"
+#include "../../../includes/validation.h"
 
 static int	is_valid_ambient(char **line)
 {

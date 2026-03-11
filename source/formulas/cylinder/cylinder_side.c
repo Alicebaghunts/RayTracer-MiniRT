@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intersect.h"
+#include "../../../includes/intersect.h"
 
 t_quad	cylinder_quadratic(t_vector ray, t_vector oc, t_vector dir,
 		double radius)

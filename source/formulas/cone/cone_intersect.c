@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intersect.h"
-#include "rendering.h"
+#include "../../../includes/intersect.h"
+#include "../../../includes/rendering.h"
 
 static double	cone_height_at_t(t_vector oc, t_vector dir, double t,
 	t_vector v)

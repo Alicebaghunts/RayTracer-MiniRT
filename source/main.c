@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rendering.h"
+#include "../includes/rendering.h"
 
 static int	mouse_hook(int button, int x, int y, t_mlx *app)
 {
@@ -36,15 +36,15 @@ static int	key_hook(int keycode, t_mlx *app)
 
 void	error_handling(int num)
 {
-	if (num == 1)
+	if (num == INVALID_ARGUMENT)
 		ft_putstr_fd("Error: Invalid argument\n", 2);
-	else if (num == 2)
+	else if (num == INVALID_PATH)
 		ft_putstr_fd("Error: Invalid path\n", 2);
-	else if (num == 3)
+	else if (num == FAILED_TO_OPEN_FILE)
 		ft_putstr_fd("Error: Failed to open file\n", 2);
-	else if (num == 4)
+	else if (num == INVALID_MAP)
 		ft_putstr_fd("Error: Invalid map\n", 2);
-	else if (num == 5)
+	else if (num == FAILED_TO_MALLOC)
 		ft_putstr_fd("Error: Failed to malloc\n", 2);
 	exit(num);
 }

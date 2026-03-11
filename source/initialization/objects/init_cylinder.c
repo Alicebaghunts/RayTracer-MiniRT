@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "initialization.h"
+#include "../../../includes/initialization.h"
 
 static int	fill_cylinder_vectors(t_cylinder *cylinder, char **pos, char **dir,
 		char **col)

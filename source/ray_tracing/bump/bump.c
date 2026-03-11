@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rendering.h"
+#include "../../../includes/rendering.h"
 #include <math.h>
 
 float	get_sphere_bump(t_sphere *sp, float u, float v)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "initialization.h"
+#include "../../../includes/initialization.h"
 
 static int	fill_cone_vectors(t_cone *cone, char **pos, char **axis, char **col)
 {

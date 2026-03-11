@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rendering.h"
+#include "../../../includes/rendering.h"
 
 void	my_mlx_pixel_put(t_mlx *app, int x, int y, int color)
 {

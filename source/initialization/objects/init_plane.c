@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "initialization.h"
+#include "../../../includes/initialization.h"
 
 static int	fill_plane_vectors(t_plane *plane, char **pos, char **norm,
 		char **col)

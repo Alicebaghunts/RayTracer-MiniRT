@@ -13,10 +13,10 @@
 #ifndef INITIALIZATION_H
 # define INITIALIZATION_H
 
-# include "libft.h"
-# include "object_types.h"
-# include "validation.h"
-# include "vector.h"
+# include "../libs/libft/libft.h"
+# include "../includes/object_types.h"
+# include "../includes/validation.h"
+# include "../includes/vector.h"
 # include <stdlib.h>
 
 // objects

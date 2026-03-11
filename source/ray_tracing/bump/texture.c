@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rendering.h"
+#include "../../../includes/rendering.h"
 
 static t_vector	get_sphere_normal(t_sphere *sp, t_vector hit)
 {

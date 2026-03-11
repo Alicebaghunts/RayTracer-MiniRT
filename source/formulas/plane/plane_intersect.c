@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rendering.h"
+#include "../../../includes/rendering.h"
 
 double	intersect_plane(t_camera *camera, t_vector ray_dir, t_plane *plane)
 {

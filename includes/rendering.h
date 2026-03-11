@@ -31,6 +31,12 @@
 #  define KEY_SPACE 32
 # endif
 
+# define INVALID_ARGUMENT 1
+# define INVALID_PATH 2
+# define FAILED_TO_OPEN_FILE 3
+# define INVALID_MAP 4
+# define FAILED_TO_MALLOC 5
+
 // ray info
 typedef struct s_rayinfo
 {

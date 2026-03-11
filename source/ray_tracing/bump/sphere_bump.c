@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rendering.h"
-#include "shade_helpers.h"
+#include "../../../includes/rendering.h"
+#include "../../../includes/shade_helpers.h"
 
 static t_vector	get_sphere_n(t_sphere *sp, t_vector hit)
 {

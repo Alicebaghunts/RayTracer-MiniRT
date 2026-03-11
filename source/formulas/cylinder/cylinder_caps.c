@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intersect.h"
+#include "../../../includes/intersect.h"
 #define EPSILON 1e-6
 
 t_vector	get_cylinder_normal(t_cylinder *cy, t_vector hit)

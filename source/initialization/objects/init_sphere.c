@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "initialization.h"
+#include "../../../includes/initialization.h"
 
 static int	fill_sphere_vectors(t_sphere *sphere, char **pos, char **col)
 {

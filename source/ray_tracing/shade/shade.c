@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intersect.h"
-#include "rendering.h"
-#include "shade_helpers.h"
+#include "../../../includes/intersect.h"
+#include "../../../includes/rendering.h"
+#include "../../../includes/shade_helpers.h"
 
 static t_color	get_obj_color(t_render_mode mode, t_object *obj,
 		t_vector hit_point)

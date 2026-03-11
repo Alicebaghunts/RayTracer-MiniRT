@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "initialization.h"
+#include "../../includes/initialization.h"
 
 void	fill_scene_with_line(t_scene *scene, char **line, char **map)
 {

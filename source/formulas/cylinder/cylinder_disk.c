@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intersect.h"
+#include "../../../includes/intersect.h"
 
 static double	intersect_disk(t_camera *cam, t_vector ray, t_disk disk)
 {

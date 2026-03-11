@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "intersect.h"
+#include "../../../includes/intersect.h"
 
 t_quad	cylinder_coeffs(t_vector dir, t_vector oc, t_vector axis, double radius)
 {

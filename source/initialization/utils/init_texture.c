@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "object_types.h"
-#include "initialization.h"
-#include "mlx.h"
+#include "../../../includes/object_types.h"
+#include "../../../includes/initialization.h"
+#include "../../../libs/minilibx-linux/mlx.h"
 #include <stdlib.h>
 #include <string.h>
 

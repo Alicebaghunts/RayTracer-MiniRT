@@ -13,10 +13,10 @@
 #ifndef VALIDATION_H
 # define VALIDATION_H
 
-# include "initialization.h"
-# include "libft.h"
-# include "mlx.h"
-# include "vector.h"
+# include "../includes/initialization.h"
+# include "../libs/libft/libft.h"
+# include "../libs/minilibx-linux/mlx.h"
+# include "../includes/vector.h"
 
 /* -------------- General helpers ------------------------ */
 int			checking_argument(char *str);

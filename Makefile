@@ -82,11 +82,11 @@ SRCS = \
 	$(FORMULAS_DIR)/vector/vector_formulas.c \
 	$(FORMULAS_DIR)/formulas.c \
 
-OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
+OBJS = $(SRCS:%.c=%.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -DGL_SILENCE_DEPRECATION -g3 
+CFLAGS = -Wall -Wextra -Werror -g3 
 
 INCS  = -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MINILIBX_DIR)
 LIBS  = -L$(LIBFT_DIR) -lft -L$(MINILIBX_DIR) -lmlx
@@ -130,4 +130,4 @@ norm:
 
 re: fclean all
 
-.PHONY: all clean fclean re lib mlx
+.PHONY: all clean fclean re lib mlx norm

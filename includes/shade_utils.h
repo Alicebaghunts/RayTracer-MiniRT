@@ -22,12 +22,12 @@ t_color		get_sphere_texture_color(t_sphere *sphere, t_texture *tex,
 t_color		get_texture_color_uv(t_texture *tex, double u, double v);
 double		color_to_height(t_color c);
 
-/* --------------- checkerboard helpers ------------------------------ */
-t_color		get_sphere_checkerboard(t_sphere *sphere, t_vector hit_point);
-t_color		get_plane_checkerboard(t_plane *pl, t_vector hit_point);
-t_color		get_cylinder_checkerboard(t_cylinder *cy, t_vector hit_point);
-t_color		get_cone_checkerboard(t_cone *cone, t_vector hit_point);
-t_color		get_object_checkerboard(t_object *obj, t_vector hit_point);
+/* --------------- erboard helpers ------------------------------ */
+t_color		get_sphere_erboard(t_sphere *sphere, t_vector hit_point);
+t_color		get_plane_erboard(t_plane *pl, t_vector hit_point);
+t_color		get_cylinder_erboard(t_cylinder *cy, t_vector hit_point);
+t_color		get_cone_erboard(t_cone *cone, t_vector hit_point);
+t_color		get_object_erboard(t_object *obj, t_vector hit_point);
 
 /* ---------------- bump helpers --------------------------------- */
 

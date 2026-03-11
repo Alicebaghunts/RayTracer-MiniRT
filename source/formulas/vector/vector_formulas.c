@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vector.h"
+#include "../../../includes/vector.h"
 
 t_vector	vector_addition(t_vector a, t_vector b)
 {

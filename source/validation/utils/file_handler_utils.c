@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "validation.h"
+#include "../../../includes/validation.h"
 
 int	ft_is_valid_xpm_format(char *path)
 {

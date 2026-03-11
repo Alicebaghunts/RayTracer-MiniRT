@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rendering.h"
-#include "validation.h"
+#include "../../../includes/rendering.h"
+#include "../../../includes/validation.h"
 
 static int	is_valid_cylinder(char **line)
 {

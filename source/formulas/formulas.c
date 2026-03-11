@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rendering.h"
+#include "../../includes/rendering.h"
 
 static void	cam_basis(t_camera *cam, t_vector *right, t_vector *up)
 {

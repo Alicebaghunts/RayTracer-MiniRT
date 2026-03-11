@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rendering.h"
+#include "../../../includes/rendering.h"
 
 static t_quad	calc_sphere_quadratic(t_vector origin, t_vector dir,
 		t_sphere *sphere)
