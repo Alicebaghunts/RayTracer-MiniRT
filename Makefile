@@ -105,7 +105,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@echo "Compiling $<"
 	@$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-all: $(NAME)
+all:  build $(NAME)
+
+build:
+	@mkdir -p $(OBJ_DIR)
 
 $(NAME): mlx lib $(OBJS)
 	@echo "Linking $(NAME)"
@@ -120,7 +123,7 @@ mlx:
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@$(MAKE) -C $(MINILIBX_DIR) clean
-	@rm -rf $(OBJ_DIR)
+	@rm -rf $(OBJS) # poxel
 
 fclean: clean
 	@rm -f $(NAME)
