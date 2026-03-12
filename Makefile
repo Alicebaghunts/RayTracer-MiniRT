@@ -2,135 +2,130 @@ MAKEFLAGS += --no-print-directory
 
 NAME = miniRT
 
-SRC_DIR       		= 	source
-OBJ_DIR         	= 	build
-LIB_DIR         	= 	libs
-INC_DIR         	=	includes
+SRC_DIR   = source
+OBJ_DIR   = build
+INC_DIR   = includes
+LIB_DIR   = libs
 
-INITIALIZATION_DIR  = 	$(SRC_DIR)/initialization
-VALIDATION_DIR  	= 	$(SRC_DIR)/validation
-PARSE_DIR       	= 	$(SRC_DIR)/parse
-GRAPHICS_DIR    	= 	$(SRC_DIR)/graphics
-RAY_TRACING_DIR 	= 	$(SRC_DIR)/ray_tracing
-VECTOR_DIR      	= 	$(SRC_DIR)/vector
-FORMULAS_DIR		= 	$(SRC_DIR)/formulas
-MINILIBX_DIR    	= 	$(LIB_DIR)/minilibx_macos
-LIBFT_DIR       	= 	$(LIB_DIR)/libft
+LIBFT_DIR    = $(LIB_DIR)/libft
+MLX_MAC_DIR  = $(LIB_DIR)/minilibx_macos
+MLX_LIN_DIR  = $(LIB_DIR)/minilibx-linux
 
 SRCS = \
 	$(SRC_DIR)/main.c \
-	$(VALIDATION_DIR)/validation.c \
-	$(VALIDATION_DIR)/objects/ambient.c \
-	$(VALIDATION_DIR)/objects/camera.c \
-	$(VALIDATION_DIR)/objects/light.c \
-	$(VALIDATION_DIR)/objects/sphere.c \
-	$(VALIDATION_DIR)/objects/plane.c \
-	$(VALIDATION_DIR)/objects/cylinder.c \
-	$(VALIDATION_DIR)/objects/cone.c \
-	$(VALIDATION_DIR)/utils/checking_nums.c \
-	$(VALIDATION_DIR)/utils/checking_object.c \
-	$(VALIDATION_DIR)/utils/file_handler_utils.c \
-	$(VALIDATION_DIR)/utils/file_handler.c \
-	$(VALIDATION_DIR)/utils/main_utils.c \
-	$(VALIDATION_DIR)/utils/destroy.c \
-	$(VALIDATION_DIR)/utils/utils.c \
-	$(INITIALIZATION_DIR)/initialization.c \
-	$(INITIALIZATION_DIR)/objects/init_ambient.c \
-	$(INITIALIZATION_DIR)/objects/init_camera.c \
-	$(INITIALIZATION_DIR)/objects/init_light.c \
-	$(INITIALIZATION_DIR)/objects/init_cylinder.c \
-	$(INITIALIZATION_DIR)/objects/init_sphere.c \
-	$(INITIALIZATION_DIR)/objects/init_plane.c \
-	$(INITIALIZATION_DIR)/objects/init_cone.c \
-	$(INITIALIZATION_DIR)/utils/free_scene.c \
-	$(INITIALIZATION_DIR)/utils/free_objects.c \
-	$(INITIALIZATION_DIR)/utils/init_objects.c \
-	$(INITIALIZATION_DIR)/utils/normalize.c \
-	$(INITIALIZATION_DIR)/utils/normalize_utils.c \
-	$(INITIALIZATION_DIR)/utils/normalize_normals.c \
-	$(INITIALIZATION_DIR)/utils/init_texture.c \
-	$(INITIALIZATION_DIR)/utils/init_mlx.c \
-	$(RAY_TRACING_DIR)/shade/shadow.c \
-	$(RAY_TRACING_DIR)/shade/shade.c \
-	$(RAY_TRACING_DIR)/shade/shade_utils.c \
-	$(RAY_TRACING_DIR)/thread/thread_utils.c \
-	$(RAY_TRACING_DIR)/thread/thread.c \
-	$(RAY_TRACING_DIR)/drawing/intersect.c \
-	$(RAY_TRACING_DIR)/drawing/drawing.c \
-	$(RAY_TRACING_DIR)/drawing/ligthing.c \
-	$(RAY_TRACING_DIR)/bump/bump.c \
-	$(RAY_TRACING_DIR)/bump/sphere_bump.c \
-	$(RAY_TRACING_DIR)/bump/texture.c \
-	$(RAY_TRACING_DIR)/checkerboard/cone_checkerboard.c \
-	$(RAY_TRACING_DIR)/checkerboard/cylinder_checkerboard.c \
-	$(RAY_TRACING_DIR)/checkerboard/plane_checkerboard.c \
-	$(RAY_TRACING_DIR)/checkerboard/sphere_checkerboard.c \
-	$(RAY_TRACING_DIR)/utils/utils.c \
-	$(RAY_TRACING_DIR)/utils/mlx_utils.c \
-	$(RAY_TRACING_DIR)/utils/cylinder_utils.c \
-	$(RAY_TRACING_DIR)/utils/cone_utils.c \
-	$(RAY_TRACING_DIR)/utils/angle_utils.c \
-	$(FORMULAS_DIR)/cylinder/cylinder_caps.c \
-	$(FORMULAS_DIR)/cylinder/cylinder_disk.c \
-	$(FORMULAS_DIR)/cylinder/cylinder_shadow.c \
-	$(FORMULAS_DIR)/cylinder/cylinder_side.c \
-	$(FORMULAS_DIR)/cylinder/cylinder_intersect.c \
-	$(FORMULAS_DIR)/plane/plane_intersect.c \
-	$(FORMULAS_DIR)/cone/cone_intersect.c \
-	$(FORMULAS_DIR)/cone/cone_intersect_utils.c \
-	$(FORMULAS_DIR)/sphere/sphere_intersect.c \
-	$(FORMULAS_DIR)/vector/vector_formulas.c \
-	$(FORMULAS_DIR)/formulas.c \
+	$(SRC_DIR)/initialization/initialization.c \
+	$(SRC_DIR)/initialization/objects/init_ambient.c \
+	$(SRC_DIR)/initialization/objects/init_camera.c \
+	$(SRC_DIR)/initialization/objects/init_light.c \
+	$(SRC_DIR)/initialization/objects/init_sphere.c \
+	$(SRC_DIR)/initialization/objects/init_plane.c \
+	$(SRC_DIR)/initialization/objects/init_cylinder.c \
+	$(SRC_DIR)/initialization/objects/init_cone.c \
+	$(SRC_DIR)/validation/validation.c \
+	$(SRC_DIR)/validation/objects/ambient.c \
+	$(SRC_DIR)/validation/objects/camera.c \
+	$(SRC_DIR)/validation/objects/light.c \
+	$(SRC_DIR)/validation/objects/sphere.c \
+	$(SRC_DIR)/validation/objects/plane.c \
+	$(SRC_DIR)/validation/objects/cylinder.c \
+	$(SRC_DIR)/validation/objects/cone.c \
+	$(SRC_DIR)/validation/utils/checking_nums.c \
+	$(SRC_DIR)/validation/utils/checking_object.c \
+	$(SRC_DIR)/validation/utils/file_handler_utils.c \
+	$(SRC_DIR)/validation/utils/file_handler.c \
+	$(SRC_DIR)/validation/utils/main_utils.c \
+	$(SRC_DIR)/validation/utils/destroy.c \
+	$(SRC_DIR)/validation/utils/utils.c \
+	$(SRC_DIR)/initialization/utils/free_scene.c \
+	$(SRC_DIR)/initialization/utils/free_objects.c \
+	$(SRC_DIR)/initialization/utils/init_objects.c \
+	$(SRC_DIR)/initialization/utils/normalize.c \
+	$(SRC_DIR)/initialization/utils/normalize_utils.c \
+	$(SRC_DIR)/initialization/utils/normalize_normals.c \
+	$(SRC_DIR)/initialization/utils/init_texture.c \
+	$(SRC_DIR)/initialization/utils/init_mlx.c \
+	$(SRC_DIR)/ray_tracing/shade/shadow.c \
+	$(SRC_DIR)/ray_tracing/shade/shade.c \
+	$(SRC_DIR)/ray_tracing/shade/shade_utils.c \
+	$(SRC_DIR)/ray_tracing/thread/thread_utils.c \
+	$(SRC_DIR)/ray_tracing/thread/thread.c \
+	$(SRC_DIR)/ray_tracing/drawing/intersect.c \
+	$(SRC_DIR)/ray_tracing/drawing/drawing.c \
+	$(SRC_DIR)/ray_tracing/drawing/ligthing.c \
+	$(SRC_DIR)/ray_tracing/bump/bump.c \
+	$(SRC_DIR)/ray_tracing/bump/sphere_bump.c \
+	$(SRC_DIR)/ray_tracing/bump/texture.c \
+	$(SRC_DIR)/ray_tracing/checkerboard/cone_checkerboard.c \
+	$(SRC_DIR)/ray_tracing/checkerboard/cylinder_checkerboard.c \
+	$(SRC_DIR)/ray_tracing/checkerboard/plane_checkerboard.c \
+	$(SRC_DIR)/ray_tracing/checkerboard/sphere_checkerboard.c \
+	$(SRC_DIR)/ray_tracing/utils/utils.c \
+	$(SRC_DIR)/ray_tracing/utils/mlx_utils.c \
+	$(SRC_DIR)/ray_tracing/utils/cylinder_utils.c \
+	$(SRC_DIR)/ray_tracing/utils/cone_utils.c \
+	$(SRC_DIR)/ray_tracing/utils/angle_utils.c \
+	$(SRC_DIR)/formulas/cylinder/cylinder_caps.c \
+	$(SRC_DIR)/formulas/cylinder/cylinder_disk.c \
+	$(SRC_DIR)/formulas/cylinder/cylinder_shadow.c \
+	$(SRC_DIR)/formulas/cylinder/cylinder_side.c \
+	$(SRC_DIR)/formulas/cylinder/cylinder_intersect.c \
+	$(SRC_DIR)/formulas/plane/plane_intersect.c \
+	$(SRC_DIR)/formulas/cone/cone_intersect.c \
+	$(SRC_DIR)/formulas/cone/cone_intersect_utils.c \
+	$(SRC_DIR)/formulas/sphere/sphere_intersect.c \
+	$(SRC_DIR)/formulas/vector/vector_formulas.c \
+	$(SRC_DIR)/formulas/formulas.c
 
-OBJS = $(SRCS:%.c=%.o)
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-CC = cc
+CC      = cc
+CFLAGS  = -Wall -Wextra -Werror -g3
 
-CFLAGS = -Wall -Wextra -Werror -g3 
+UNAME_S := $(shell uname -s)
 
-INCS  = -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MINILIBX_DIR)
-LIBS  = -L$(LIBFT_DIR) -lft -L$(MINILIBX_DIR) -lmlx
-FMS   = -framework OpenGL -framework AppKit
-
-UNAME := $(shell uname -s)
-ifeq ($(UNAME), Linux)
-	MINILIBX_DIR = $(LIB_DIR)/minilibx-linux
-	INCS  = -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MINILIBX_DIR)
-	LIBS  = -L$(LIBFT_DIR) -lft -L$(MINILIBX_DIR) -lmlx -lm -lX11 -lXext
-	FMS   =
+ifeq ($(UNAME_S),Darwin) 
+    MLX_DIR   = $(MLX_MAC_DIR)
+    INCS      = -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
+    LIBS      = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx
+    FFLAGS    = -framework OpenGL -framework AppKit
+else ifeq ($(UNAME_S),Linux)
+    MLX_DIR   = $(MLX_LIN_DIR)
+    INCS      = -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
+    LIBS      = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
+    FFLAGS    =
+else
+    $(error Unsupported OS: $(UNAME_S))
 endif
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o : $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	@echo "Compiling $<"
+	@echo "Compiling \033[0;33m$<\033[0m"
 	@$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
-all:  build $(NAME)
+all: lib mlx $(NAME)
 
-build:
-	@mkdir -p $(OBJ_DIR)
-
-$(NAME): mlx lib $(OBJS)
-	@echo "Linking $(NAME)"
-	@$(CC) $(CFLAGS) $(OBJS) $(INCS) $(LIBS) $(FMS) -o $(NAME)
+$(NAME): $(OBJS)
+	@echo "Linking \033[0;32m$(NAME)\033[0m"
+	@$(CC) $(OBJS) $(LIBS) $(FFLAGS) -o $(NAME)
 
 lib:
 	@$(MAKE) -C $(LIBFT_DIR)
 
 mlx:
-	@$(MAKE) -C $(MINILIBX_DIR)
+	@$(MAKE) -C $(MLX_DIR)
 
 clean:
 	@$(MAKE) -C $(LIBFT_DIR) clean
-	@$(MAKE) -C $(MINILIBX_DIR) clean
-	@rm -rf $(OBJS) # poxel
+	@$(MAKE) -C $(MLX_MAC_DIR) clean 2>/dev/null || true
+	@$(MAKE) -C $(MLX_LIN_DIR) clean 2>/dev/null || true
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
 	@rm -f $(NAME)
 
-norm:
-	@norminette  $(shell find . -name "*.h" ! -path "./libs/minilibx*") source libs/libft 
-
 re: fclean all
+
+norm:
+	@norminette $(INC_DIR) $(SRC_DIR) $(LIBFT_DIR) 2>/dev/null || true
 
 .PHONY: all clean fclean re lib mlx norm
