@@ -93,8 +93,6 @@ else ifeq ($(UNAME_S),Linux)
     INCS      = -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
     LIBS      = -L$(LIBFT_DIR) -lft -L$(MLX_DIR) -lmlx -lX11 -lXext -lm
     FFLAGS    =
-else
-    $(error Unsupported OS: $(UNAME_S))
 endif
 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c

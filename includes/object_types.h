@@ -6,7 +6,7 @@
 /*   By: alisharu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:34:48 by alisharu          #+#    #+#             */
-/*   Updated: 2026/01/23 11:35:43 by alisharu         ###   ########.fr       */
+/*   Updated: 2026/03/13 15:22:27 by alisharu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define INVALID_MAP 4
 # define MALLOC_ERROR 5
 
-# define MLX_X 800
-# define MLX_Y 600
+# define MLX_X 1000
+# define MLX_Y 800
 
 /* ------------------------ Hit types ------------------------ */
 typedef enum e_hit_type
