@@ -22,14 +22,14 @@ The goal of the project is to introduce the fundamentals of ray tracing (rays, i
 
 Below are some example renders produced by `miniRT`:
 
-![Floating sphere with colored lights](assets/Screenshot_2026-03-13_at_15.47.56-a04a5920-1563-4d78-aa0e-a6dd90b03a79.png)
-![Sphere over checkerboard plane](assets/Screenshot_2026-03-13_at_15.47.23-ea1511c9-1c0d-4053-b366-0fbf99f1a653.png)
-![Solar system style composition](assets/Screenshot_2026-03-13_at_15.43.49-142fcd29-e883-4842-bb87-a9fa9a99d655.png)
-![Spheres on tilted checkerboard plane](assets/Screenshot_2026-03-13_at_15.53.51-b81f29d5-040d-41c2-9905-1f863b6175b1.png)
 ![Cluster of spheres with checkerboard background](assets/Screenshot_2026-03-13_at_15.28.05-7223db11-8149-4b41-8b9d-600cf9b86514.png)
 ![Colored light fan composition](assets/Screenshot_2026-03-13_at_15.45.15-9dc071f2-bec4-41bf-8808-32017932a24d.png)
 ![Checkerboard room with columns](assets/Screenshot_2026-03-13_at_15.23.42-ade25c48-d6be-440d-a02c-9d8b5c2d43c0.png)
 ![Checkerboard floor with many spheres](assets/Screenshot_2026-03-13_at_15.27.43-dd8cc099-62ef-4bab-ae37-7f4c9f0d61b6.png)
+![Floating sphere with colored lights](assets/Screenshot_2026-03-13_at_15.47.56-a04a5920-1563-4d78-aa0e-a6dd90b03a79.png)
+![Sphere over checkerboard plane](assets/Screenshot_2026-03-13_at_15.47.23-ea1511c9-1c0d-4053-b366-0fbf99f1a653.png)
+![Solar system style composition](assets/Screenshot_2026-03-13_at_15.43.49-142fcd29-e883-4842-bb87-a9fa9a99d655.png)
+![Spheres on tilted checkerboard plane](assets/Screenshot_2026-03-13_at_15.53.51-b81f29d5-040d-41c2-9905-1f863b6175b1.png)
 
 ### Requirements
 
